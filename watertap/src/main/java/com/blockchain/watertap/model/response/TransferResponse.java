@@ -6,6 +6,8 @@ public class TransferResponse {
 
     private String time;
 
+    private String toAddress;
+
     public String getUrl() {
         return url;
     }
@@ -20,5 +22,13 @@ public class TransferResponse {
 
     public void setTime(String time) {
         this.time = time;
+    }
+
+    public String getToAddress() {
+        return toAddress;
+    }
+
+    public void setToAddress(String toAddress) {
+        this.toAddress = toAddress;
     }
 }

@@ -50,11 +50,6 @@ public class Web3Service {
 
     private static final String PENDING = "Pending";
 
-    private static final String URL_PREFIX = "<a href=\"";
-    private static final String URL_MIDDLE = "\">";
-    private static final String URL_SUFFIX = "</a>";
-
-
     private ThreadLocal<Jep> tlInterp = new ThreadLocal<>();
 
     private Jep getPythonInterp() {
@@ -107,20 +102,16 @@ public class Web3Service {
         }
         for (TransferPO eachTransfer : transferPOList) {
             TransferResponse transferResponse = new TransferResponse();
+            transferResponse.setToAddress(eachTransfer.getToAddress());
             if (TransferStateEnum.READY.getState().equals(eachTransfer.getState())) {
                 transferResponse.setTime(PENDING);
-                transferResponse.setUrl(eachTransfer.getToAddress());
             } else {
                 LocalDateTime transferTime = eachTransfer.getTransferTime();
                 LocalDateTime nowTime = LocalDateTime.now();
                 transferResponse.setTime(LocalDateTimeUtil.calTimeDiff(transferTime, nowTime));
                 StringBuffer sb = new StringBuffer();
-                sb.append(URL_PREFIX);
                 sb.append(eachTransfer.getNetwork());
                 sb.append(eachTransfer.getTxHash());
-                sb.append(URL_MIDDLE);
-                sb.append(eachTransfer.getToAddress());
-                sb.append(URL_SUFFIX);
                 transferResponse.setUrl(sb.toString());
             }
             transferResponses.add(transferResponse);

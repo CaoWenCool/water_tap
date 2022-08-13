@@ -8,7 +8,7 @@
     <script type="text/javascript" th:src="@{/static/js/jquery-3.6.0.min.js}"></script>
     <link rel="stylesheet" type="text/css" th:href="@{/static/water/css/common.css}"/>
     <script>
-        var url = "http://127.0.0.1:8080"
+        var url = "http://8.218.81.14:8080"
 
         function transfer() {
             var toSendAddress = $("#toAddress").val();
@@ -41,13 +41,18 @@
                 type: 'get',
                 dataType: 'json',
                 success: function (res) {
+                    console.log(res)
                     if (res.code == 200) {
                         var resData = res.data;
                         for (var i = 0; i < resData.length; i++) {
                             var url = resData[i].url;
+                            var toAddress =resData[i].toAddress;
                             var time = resData[i].time;
-                            $("#toAddress-" + i).text(url);
+                            $("#toAddress-a-" + i).text(toAddress);
                             $("#timeAgo-" + i).text(time);
+                            if(null != url){
+                                $("#toAddress-a-" + i).attr("href",url);
+                            }
                         }
                     } else {
                         alert("Get fail!  " + res.msg);
@@ -88,11 +93,11 @@
             </thead>
             <tbody>
             <tr>
-                <th id="toAddress-0">.....</th>
+                <th id="toAddress-0"><a id="toAddress-a-0" href="#">.....</a></th>
                 <th id="timeAgo-0">0 minutes ago</th>
             </tr>
             <tr>
-                <th id="toAddress-1">.....</th>
+                <th id="toAddress-1"><a id="toAddress-a-1" href="#">.....</a></th>
                 <th id="timeAgo-1">0 minutes ago</th>
             </tr>
             </tbody>
