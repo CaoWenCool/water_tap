@@ -14,9 +14,11 @@
             var toAddress = $("#toAddress").val();
             $.ajax({
                 url:transferUrl,
-                type:'POST',
+                type:'get',
                 dataType:'json',
                 data:{"toAddress":toAddress},
+                contentType: "application/json",
+                jsonpCallback: 'jsonCallback',
                 success:function (res){
                     console.log(res);
                     alert("send success!");
