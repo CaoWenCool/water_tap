@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+  ~ Copyright (C) 2021 Baidu, Inc. All Rights Reserved.
+  -->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.currency.qrcode.currency.mapper.opensea.mapper.OpeasenMapper">
+
+    <resultMap type="com.currency.qrcode.currency.mapper.opensea.model.OpeasenPO" id="BaseResultMap">
+        <result column="id" property="id"/>
+        <result column="image_name" property="imageName"/>
+        <result column="description" property="description"/>
+        <result column="edition" property="edition"/>
+        <result column="create_date" property="createDate"/>
+        <result column="price" property="price"/>
+        <result column="high_price" property="highPrice"/>
+        <result column="low_price" property="lowPrice"/>
+        <result column="color" property="color"/>
+        <result column="complier" property="complier"/>
+        <result column="image" property="image"/>
+        <result column="task_id" property="taskId"/>
+    </resultMap>
+
+    <sql id="Insert_Column_List">
+        image_name,
+        description,
+        edition,
+        create_date,
+        price,
+        high_price,
+        low_price,
+        color,
+        complier,
+        image,
+        task_id
+    </sql>
+
+    <sql id="Base_Column_List">
+        id,
+        image_name,
+        description,
+        edition,
+        create_date,
+        price,
+        high_price,
+        low_price,
+        color,
+        complier,
+        image,
+        task_id
+    </sql>
+
+    <insert id="insert"
+            useGeneratedKeys="true"
+            keyColumn="id"
+            keyProperty="id"
+            parameterType="com.currency.qrcode.currency.mapper.opensea.model.OpeasenPO">
+        INSERT INTO opeasen
+        (
+        <include refid="Insert_Column_List"/>
+        )
+        values
+        (
+        #{imageName},
+        #{description},
+        #{edition},
+        #{createDate},
+        #{price},
+        #{highPrice},
+        #{lowPrice},
+        #{color},
+        #{complier},
+        #{image},
+        #{taskId}
+        )
+    </insert>
+
+
+    <select id="listByPage" resultMap="BaseResultMap" lang="_xml">
+        select
+        <include refid="Base_Column_List"/>
+        FROM
+        opeasen
+        <where>
+            <if test="request.filterMap != null and request.filterMap.size() > 0">
+                <foreach collection="request.filterMap" index="key" item="value" separator="AND" open="AND">
+                    <choose>
+                        <when test="value instanceof String and (value.startsWith('%') or value.endsWith('%'))">
+                            ${check.columnWithPre(key)} like #{value}
+                        </when>
+                        <when test='value instanceof java.util.Collection'>
+                            ${check.columnWithPre(key)} in
+                            <foreach collection="value" item="id" index="index" open="(" close=")" separator=",">
+                                #{id}
+                            </foreach>
+                        </when>
+                        <otherwise>
+                            ${check.column(key)} = #{value}
+                        </otherwise>
+                    </choose>
+                </foreach>
+            </if>
+        </where>
+        <if test="request.orders != null and request.orders.size()>0">
+            <foreach collection="request.orders" index="index" item="orderModel" open="order by"
+                     separator=",">
+                ${check.column(orderModel.orderBy)} ${check.order(orderModel.order)}
+            </foreach>
+        </if>
+    </select>
+
+    <select id="countOpeasen" resultType="java.lang.Integer" lang="_xml">
+        select
+        count(*)
+        FROM
+        opeasen
+        <where>
+            <if test="request.filterMap != null and request.filterMap.size() > 0">
+                <foreach collection="request.filterMap" index="key" item="value" separator="AND" open="AND">
+                    <choose>
+                        <when test="value instanceof String and (value.startsWith('%') or value.endsWith('%'))">
+                            ${check.columnWithPre(key)} like #{value}
+                        </when>
+                        <when test='value instanceof java.util.Collection'>
+                            ${check.columnWithPre(key)} in
+                            <foreach collection="value" item="id" index="index" open="(" close=")" separator=",">
+                                #{id}
+                            </foreach>
+                        </when>
+                        <otherwise>
+                            ${check.column(key)} = #{value}
+                        </otherwise>
+                    </choose>
+                </foreach>
+            </if>
+        </where>
+        <if test="request.orders != null and request.orders.size()>0">
+            <foreach collection="request.orders" index="index" item="orderModel" open="order by"
+                     separator=",">
+                ${check.column(orderModel.orderBy)} ${check.order(orderModel.order)}
+            </foreach>
+        </if>
+    </select>
+
+
+</mapper>
