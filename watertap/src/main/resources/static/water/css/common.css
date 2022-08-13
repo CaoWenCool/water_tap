@@ -1,0 +1,61 @@
+body {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image:url('../image/background.jpg');
+}
+
+.logo {
+    width: 5.8%;
+    height: 9.8%;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-image: url(../image/logo.jpg);
+    margin-top: 4.1%;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.metaunva {
+    width: 27.3%;
+    height: 4.9%;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-image: url(../image/metaunva.jpg);
+    margin-top: 1%;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.send-token {
+    width: 26.5%;
+    height: 3.6%;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-image: url(../image/sendtoken.jpg);
+    margin-top: 1%;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.send {
+    width: 69.4%;
+    height: 18.8%;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-image: url(../image/sendbackground.jpg);
+    margin-top: 2%;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.history {
+    width: 69.4%;
+    height: 20.8%;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-image: url(../image/history.jpg);
+    margin-top: 1.5%;
+    margin-right: auto;
+    margin-left: auto;
+}

@@ -31,6 +31,9 @@ public class Web3Service {
     @Value("${water.tab.token.address:}")
     private String tokenAddress;
 
+    @Value("${water.tab.blockchain.browser:}")
+    private String blockChainBrowser;
+
 
     private ThreadLocal<Jep> tlInterp = new ThreadLocal<>();
 
@@ -86,7 +89,7 @@ public class Web3Service {
             jep.set("trans_value", transVale);
             Object ret = jep.getValue("transfer(network, token_address, abi, private_key, to_address, trans_value)");
             logger.info("transfer address:" + toAddress + ", transfer value:" + transVale + ",trasferHash:" + ret);
-            return ret;
+            return blockChainBrowser + ret;
         } catch (JepException jepException) {
             jepException.printStackTrace();
         }

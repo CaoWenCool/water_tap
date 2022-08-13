@@ -17,6 +17,6 @@ public class WebController {
             notes = "首页"
     )
     public ModelAndView index(){
-        return new ModelAndView("index");
+        return new ModelAndView("water");
     }
 }
