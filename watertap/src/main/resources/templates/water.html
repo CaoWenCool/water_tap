@@ -11,12 +11,13 @@
         var url = "http://8.218.81.14:8080"
         function transfer(){
             var transferUrl = url + "/web3/transfer";
-            var toAddress = $("#toAddress").val();
+            var toSendAddress = $("#toAddress").val();
             $.ajax({
                 url:transferUrl,
-                type:'post',
+                type:'get',
                 dataType: 'json',
-                data:{"toAddress":toAddress},
+                data:{toAddress:toSendAddress},
+                cache: false,
                 contentType: "application/json",
                 success:function (res){
                     console.log(res);

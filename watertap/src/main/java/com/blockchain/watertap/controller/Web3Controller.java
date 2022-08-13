@@ -38,7 +38,7 @@ public class Web3Controller {
             value = "转账",
             notes = "转账"
     )
-    @PostMapping(value = "/transfer")
+    @GetMapping(value = "/transfer")
     public String transfer(
             @ApiParam("转账地址")
             @RequestParam String toAddress) {
