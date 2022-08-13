@@ -12,13 +12,15 @@
         function transfer(){
             var transferUrl = url + "/web3/transfer";
             var toSendAddress = $("#toAddress").val();
+            var param = new Object();
+            param.toAddress = toSendAddress
             $.ajax({
                 url:transferUrl,
-                type:'get',
+                type:'post',
                 dataType: 'json',
-                data:{toAddress:toSendAddress},
+                data:JSON.stringify(param),
                 cache: false,
-                contentType: "application/json",
+                contentType: "application/json;charset=UTF-8",
                 success:function (res){
                     console.log(res);
                     alert("send success!");
