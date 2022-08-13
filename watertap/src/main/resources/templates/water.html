@@ -14,8 +14,7 @@
             var toAddress = $("#toAddress").val();
             $.ajax({
                 url:transferUrl,
-                type:'get',
-                dataType:'json',
+                type:'post',
                 data:{"toAddress":toAddress},
                 contentType: "application/json",
                 success:function (res){
