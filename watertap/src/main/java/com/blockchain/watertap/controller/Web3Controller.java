@@ -25,20 +25,6 @@ public class Web3Controller {
     Web3Service web3Service;
 
     @ApiOperation(
-            value = "测试",
-            notes = "测试"
-    )
-    @GetMapping(value = "/test")
-    public Object getBalance(
-            @ApiParam("a")
-            @RequestParam(required = false) Integer a,
-            @ApiParam("b")
-            @RequestParam(required = false) Integer b) {
-
-        return web3Service.getTest(a, b);
-    }
-
-    @ApiOperation(
             value = "转账",
             notes = "转账"
     )

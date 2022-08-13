@@ -50,6 +50,8 @@ public class Web3Service {
 
     private static final String PENDING = "Pending";
 
+    private static final String SEND_FAIL = "Send Fail";
+
     private ThreadLocal<Jep> tlInterp = new ThreadLocal<>();
 
     private Jep getPythonInterp() {
@@ -80,19 +82,6 @@ public class Web3Service {
         return tlInterp.get();
     }
 
-    public Object getTest(Integer a, Integer b) {
-        Jep jep = getPythonInterp();
-        try {
-            jep.set("a", a);
-            jep.set("b", b);
-            Object ret = jep.getValue("add_num(a,b)");
-            return ret;
-        } catch (JepException jepException) {
-            jepException.printStackTrace();
-        }
-        return null;
-    }
-
     public List<TransferResponse> transferHis() {
         ListRequest listRequest = new ListRequest("desc", "id", 1, 2);
         List<TransferPO> transferPOList = transferMapper.listByPage(listRequest);
@@ -105,7 +94,7 @@ public class Web3Service {
             transferResponse.setToAddress(eachTransfer.getToAddress());
             if (TransferStateEnum.READY.getState().equals(eachTransfer.getState())) {
                 transferResponse.setTime(PENDING);
-            } else {
+            } else if(TransferStateEnum.SUCCESS.getState().equals(eachTransfer.getState())){
                 LocalDateTime transferTime = eachTransfer.getTransferTime();
                 LocalDateTime nowTime = LocalDateTime.now();
                 transferResponse.setTime(LocalDateTimeUtil.calTimeDiff(transferTime, nowTime));
@@ -113,6 +102,8 @@ public class Web3Service {
                 sb.append(eachTransfer.getNetwork());
                 sb.append(eachTransfer.getTxHash());
                 transferResponse.setUrl(sb.toString());
+            }else {
+                transferResponse.setTime(SEND_FAIL);
             }
             transferResponses.add(transferResponse);
         }
