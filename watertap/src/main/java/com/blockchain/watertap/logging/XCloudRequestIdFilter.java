@@ -34,8 +34,18 @@ public class XCloudRequestIdFilter implements Filter {
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
             throws IOException, ServletException {
         preHandle((HttpServletRequest) request, (HttpServletResponse) response);
-        chain.doFilter(request, response);
-        afterCompletion((HttpServletRequest) request, (HttpServletResponse) response);
+        // 解決跨域問題
+        HttpServletRequest reqs = (HttpServletRequest) request;
+        String curOrigin = reqs.getHeader("Origin");
+        HttpServletResponse res = (HttpServletResponse) response;
+        res.setHeader("Access-Control-Allow-Origin", curOrigin == null ? "true":curOrigin);
+        res.setHeader("Access-Control-Allow-Credentials", "true");
+        res.setHeader("Access-Control-Allow-Methods", "POST,GET,PUT,OPTIONS,DELETE,HEAD");
+        res.setHeader("Access-Control-Allow-Max-Age", "3600");
+        res.setHeader("Access-Control-Allow-Headers", "access-control-allow-origin, authority, content-type, version-info, X-Requested-With");
+
+        chain.doFilter(reqs, res);
+        afterCompletion(reqs, res);
     }
 
     public void preHandle(HttpServletRequest request, HttpServletResponse response) {
