@@ -51,11 +51,60 @@ body {
 
 .history {
     width: 69.4%;
-    height: 20.8%;
+    height: 24.8%;
     background-size: 100% 100%;
     background-repeat: no-repeat;
     background-image: url(../image/history.jpg);
     margin-top: 1.5%;
     margin-right: auto;
     margin-left: auto;
+}
+
+.send-address-text {
+    outline-style: none;
+    width: 85%;
+    height: 30%;
+    text-align: center;
+    margin-right: auto;
+    margin-left: auto;
+    padding-top: 2%;
+}
+
+.send-address-button {
+    outline-style: none;
+    width: 85%;
+    height: 40%;
+    text-align: center;
+    margin-right: auto;
+    margin-left: auto;
+    padding-top: 2%;
+    text-align: right;
+}
+
+.send-address-text input{
+    width: 100%;
+    height: 100%;
+    border: 1px solid #ffffff;
+    border-radius: 10px;
+    color: #7D7D7D;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+}
+
+.send-address-button input{
+    width: 11%;
+    height: 60%;
+    text-align: right;
+    border: 1px solid #10CB6C;
+    border-radius: 10px;
+    background: linear-gradient(90deg, #10CB6C 0%, #09A656 95.29%);
+    color: #FFFFFF;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
 }
