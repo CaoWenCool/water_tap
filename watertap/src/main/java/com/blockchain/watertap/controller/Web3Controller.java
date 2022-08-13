@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class Web3Controller {
 
+    private static final Integer SEND_VALUE = 5;
 
     @Autowired
     Web3Service web3Service;
@@ -42,10 +43,8 @@ public class Web3Controller {
     @GetMapping(value = "/transfer")
     public Object transfer(
             @ApiParam("转账地址")
-            @RequestParam(required = false) String toAddress,
-            @ApiParam("转账金额")
-            @RequestParam(required = false) Integer transferValue) {
+            @RequestParam String toAddress) {
 
-        return web3Service.web3Transfer(toAddress,transferValue);
+        return web3Service.web3Transfer(toAddress,SEND_VALUE);
     }
 }

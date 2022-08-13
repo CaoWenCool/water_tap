@@ -7,6 +7,25 @@
     <title>Document</title>
     <script type="text/javascript" th:src="@{/static/js/jquery-3.6.0.min.js}"></script>
     <link rel="stylesheet" type="text/css" th:href="@{/static/water/css/common.css}" />
+    <script>
+        var url = "http://8.218.81.14:8080"
+        function transfer(){
+            var transferUrl = url + "/web3/transfer";
+            var toAddress = $("#toAddress").val();
+            $.ajax({
+                url:transferUrl,
+                type:'POST',
+                dataType:'json',
+                data:{"toAddress":toAddress},
+                success:function (res){
+                    console.log(res);
+                    alert("send success!");
+                },error:function (xhr,errorMessage,e){
+                    alert(errorMessage);
+                }
+            })
+        }
+    </script>
 </head>
 <body>
     <div class="logo">
@@ -17,10 +36,10 @@
     </div>
     <div class="send">
         <div class="send-address-text">
-            <input type="text" placeholder="Enter your wallet address(0x...) or ENS domain">
+            <input id="toAddress" type="text" placeholder="Enter your wallet address(0x...) or ENS domain">
         </div>
         <div class="send-address-button">
-            <input type="button" value="Send Request">
+            <input type="button" value="Send Request" onclick="transfer()">
         </div>
     </div>
     <div class="history">
