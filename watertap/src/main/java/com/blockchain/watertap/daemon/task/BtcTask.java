@@ -2,10 +2,10 @@ package com.blockchain.watertap.daemon.task;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.currency.qrcode.currency.mapper.opensea.model.OpeasenPO;
-import com.currency.qrcode.currency.model.request.ListRequest;
-import com.currency.qrcode.currency.model.request.ListingLatestRequest;
-import com.currency.qrcode.currency.service.OpeasenService;
+import com.blockchain.watertap.mapper.opensea.model.OpeasenPO;
+import com.blockchain.watertap.model.request.ListRequest;
+import com.blockchain.watertap.model.request.ListingLatestRequest;
+import com.blockchain.watertap.service.OpeasenService;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpHeaders;
 import org.apache.http.client.methods.CloseableHttpResponse;

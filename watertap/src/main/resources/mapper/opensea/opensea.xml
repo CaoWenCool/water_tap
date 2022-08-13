@@ -4,9 +4,9 @@
   -->
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.currency.qrcode.currency.mapper.opensea.mapper.OpeasenMapper">
+<mapper namespace="com.blockchain.watertap.mapper.opensea.mapper.OpeasenMapper">
 
-    <resultMap type="com.currency.qrcode.currency.mapper.opensea.model.OpeasenPO" id="BaseResultMap">
+    <resultMap type="com.blockchain.watertap.mapper.opensea.model.OpeasenPO" id="BaseResultMap">
         <result column="id" property="id"/>
         <result column="image_name" property="imageName"/>
         <result column="description" property="description"/>
@@ -54,7 +54,7 @@
             useGeneratedKeys="true"
             keyColumn="id"
             keyProperty="id"
-            parameterType="com.currency.qrcode.currency.mapper.opensea.model.OpeasenPO">
+            parameterType="com.blockchain.watertap.mapper.opensea.model.OpeasenPO">
         INSERT INTO opeasen
         (
         <include refid="Insert_Column_List"/>

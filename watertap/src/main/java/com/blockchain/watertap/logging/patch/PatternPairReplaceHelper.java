@@ -1,6 +1,6 @@
 package com.blockchain.watertap.logging.patch;
 
-import com.currency.qrcode.currency.logging.patch.converter.CustomConverterFactory;
+import com.blockchain.watertap.logging.patch.converter.CustomConverterFactory;
 import org.apache.commons.collections.CollectionUtils;
 
 import java.util.List;

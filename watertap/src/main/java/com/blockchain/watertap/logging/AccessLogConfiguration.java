@@ -1,8 +1,8 @@
 package com.blockchain.watertap.logging;
 
 import ch.qos.logback.access.servlet.TeeFilter;
-import com.currency.qrcode.currency.logging.logback.LogbackContext;
-import com.currency.qrcode.currency.logging.patch.CustomLogbackValve;
+import com.blockchain.watertap.logging.logback.LogbackContext;
+import com.blockchain.watertap.logging.patch.CustomLogbackValve;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnExpression;

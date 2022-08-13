@@ -21,8 +21,8 @@ import java.util.Map;
 public class ContextMapPropertyAccessor implements PropertyAccessor  {
 
     private static final Map<String, Object> SQL_UTILS = ImmutableMap.of(
-        "check", com.currency.qrcode.currency.database.mybatis.SqlCheckBean.INSTANCE,
-        "escape", com.currency.qrcode.currency.database.mybatis.SqlEscapeBean.INSTANCE
+        "check", SqlCheckBean.INSTANCE,
+        "escape", SqlEscapeBean.INSTANCE
     );
 
     @Override

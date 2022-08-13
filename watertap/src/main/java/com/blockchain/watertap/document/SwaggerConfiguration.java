@@ -29,9 +29,9 @@ import java.util.List;
 public class SwaggerConfiguration {
 
 
-    private final com.currency.qrcode.currency.document.SwaggerProperties swaggerProperties;
+    private final SwaggerProperties swaggerProperties;
 
-    public SwaggerConfiguration(com.currency.qrcode.currency.document.SwaggerProperties swaggerProperties) {
+    public SwaggerConfiguration(SwaggerProperties swaggerProperties) {
         this.swaggerProperties = swaggerProperties;
     }
 

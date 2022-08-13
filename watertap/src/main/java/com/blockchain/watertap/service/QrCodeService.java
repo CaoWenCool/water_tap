@@ -1,10 +1,10 @@
 package com.blockchain.watertap.service;
 
 import com.alibaba.fastjson.JSONObject;
-import com.currency.qrcode.currency.model.AliHttpConstant;
-import com.currency.qrcode.currency.model.CurrencyEnum;
-import com.currency.qrcode.currency.util.HttpUtils;
-import com.currency.qrcode.currency.util.JsonConverUtil;
+import com.blockchain.watertap.model.AliHttpConstant;
+import com.blockchain.watertap.model.CurrencyEnum;
+import com.blockchain.watertap.util.HttpUtils;
+import com.blockchain.watertap.util.JsonConverUtil;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.EncodeHintType;
 import com.google.zxing.MultiFormatWriter;

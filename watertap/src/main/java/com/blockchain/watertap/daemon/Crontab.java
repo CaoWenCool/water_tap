@@ -1,7 +1,7 @@
 package com.blockchain.watertap.daemon;
 
-import com.currency.qrcode.currency.daemon.task.BtcTask;
-import com.currency.qrcode.currency.daemon.task.EthTask;
+import com.blockchain.watertap.daemon.task.BtcTask;
+import com.blockchain.watertap.daemon.task.EthTask;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,10 +21,10 @@ public class Crontab {
     /**
      * 60秒钟检查一次
      */
-    @Scheduled(fixedRate = 1000 * 60)
-    public void getEthBalance(){
-        ethTask.updateEthAddressBalance();
-    }
+//    @Scheduled(fixedRate = 1000 * 60)
+//    public void getEthBalance(){
+//        ethTask.updateEthAddressBalance();
+//    }
 
     /**
      * 1秒钟检查一次

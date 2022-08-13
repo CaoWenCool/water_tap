@@ -3,10 +3,11 @@
  */
 package com.blockchain.watertap.exception.handling;
 
-import com.currency.qrcode.currency.exception.TokenException;
-import com.currency.qrcode.currency.exception.XCloudException;
-import com.currency.qrcode.currency.exception.XCloudValidationException;
-import com.currency.qrcode.currency.i18n.I18nMessageUtils;
+
+import com.blockchain.watertap.exception.TokenException;
+import com.blockchain.watertap.exception.XCloudException;
+import com.blockchain.watertap.exception.XCloudValidationException;
+import com.blockchain.watertap.i18n.I18nMessageUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.mybatis.spring.MyBatisSystemException;
 import org.slf4j.Logger;

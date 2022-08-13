@@ -1,7 +1,6 @@
 package com.blockchain.watertap.service;
 
-
-import com.currency.qrcode.currency.model.request.ListingLatestRequest;
+import com.blockchain.watertap.model.request.ListingLatestRequest;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpHeaders;

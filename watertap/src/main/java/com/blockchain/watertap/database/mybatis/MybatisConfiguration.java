@@ -1,6 +1,6 @@
 package com.blockchain.watertap.database.mybatis;
 
-import com.currency.qrcode.currency.database.SqliPrevention;
+import com.blockchain.watertap.database.SqliPrevention;
 import org.apache.ibatis.ognl.OgnlRuntime;
 import org.apache.ibatis.scripting.xmltags.DynamicContext;
 import org.mybatis.spring.boot.autoconfigure.ConfigurationCustomizer;
@@ -42,7 +42,7 @@ public class MybatisConfiguration {
             // ContextMap is a package private class, we cannot directly reference it here.
             Class<?> contextMapClass = Class.forName(DynamicContext.class.getName() + "$ContextMap");
 
-            OgnlRuntime.setPropertyAccessor(contextMapClass, new com.currency.qrcode.currency.database.mybatis.ContextMapPropertyAccessor());
+            OgnlRuntime.setPropertyAccessor(contextMapClass, new ContextMapPropertyAccessor());
         } catch (Exception e) {
             log.error("Failed to override PropertyAccessor for ContextMap", e);
         }
@@ -51,7 +51,7 @@ public class MybatisConfiguration {
     @Bean
     @ConditionalOnMissingBean(ConfigurationCustomizer.class)
     public ConfigurationCustomizer configurationCustomizer() {
-        return new com.currency.qrcode.currency.database.mybatis.DefaultConfigurationCustomizer(language, injectionFilterRegex);
+        return new DefaultConfigurationCustomizer(language, injectionFilterRegex);
     }
 
     // TODO: 集成 百度安全编码规范及安全SDK new SafeBoundSqlInterceptor()

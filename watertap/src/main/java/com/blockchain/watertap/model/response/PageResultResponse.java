@@ -3,8 +3,8 @@
  */
 package com.blockchain.watertap.model.response;
 
-import com.currency.qrcode.currency.model.request.ListRequest;
-import com.currency.qrcode.currency.model.request.OrderModel;
+import com.blockchain.watertap.model.request.ListRequest;
+import com.blockchain.watertap.model.request.OrderModel;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.github.pagehelper.PageInfo;
 import io.swagger.annotations.ApiModelProperty;

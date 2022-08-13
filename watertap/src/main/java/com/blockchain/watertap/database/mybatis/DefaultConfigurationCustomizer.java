@@ -1,6 +1,6 @@
 package com.blockchain.watertap.database.mybatis;
 
-import com.currency.qrcode.currency.database.mybatis.xml.InjectionFilteringXmlLanguageDriver;
+import com.blockchain.watertap.database.mybatis.xml.InjectionFilteringXmlLanguageDriver;
 import org.apache.commons.collections.MapUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.mybatis.scripting.velocity.VelocityLanguageDriver;

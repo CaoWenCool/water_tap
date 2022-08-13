@@ -3,8 +3,8 @@
  */
 package com.blockchain.watertap.database;
 
-import com.currency.qrcode.currency.model.request.ListRequest;
-import com.currency.qrcode.currency.model.request.OrderModel;
+import com.blockchain.watertap.model.request.ListRequest;
+import com.blockchain.watertap.model.request.OrderModel;
 import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.ibatis.mapping.ResultMap;

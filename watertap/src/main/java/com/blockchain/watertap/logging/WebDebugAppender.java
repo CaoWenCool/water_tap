@@ -2,7 +2,7 @@ package com.blockchain.watertap.logging;
 
 import ch.qos.logback.classic.spi.ILoggingEvent;
 import ch.qos.logback.core.AppenderBase;
-import com.currency.qrcode.currency.logging.patch.CustomLogPatternLayoutEncoder;
+import com.blockchain.watertap.logging.patch.CustomLogPatternLayoutEncoder;
 
 import java.io.IOException;
 import java.io.OutputStream;

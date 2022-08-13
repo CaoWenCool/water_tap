@@ -1,1 +1,1 @@
-org.springframework.boot.autoconfigure.EnableAutoConfiguration=com.currency.qrcode.currency.database.mybatis.log.MybatisSqlPrintAutoConfiguration
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=com.blockchain.watertap.database.mybatis.log.MybatisSqlPrintAutoConfiguration

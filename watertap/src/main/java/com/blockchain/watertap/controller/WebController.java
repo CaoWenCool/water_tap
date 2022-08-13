@@ -8,7 +8,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @Api(tags = "访问界面")
-@RequestMapping("/web")
+@RequestMapping("/water/tab")
 public class WebController {
 
     @RequestMapping("/index")

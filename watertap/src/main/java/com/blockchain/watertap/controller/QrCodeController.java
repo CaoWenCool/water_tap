@@ -1,9 +1,9 @@
 package com.blockchain.watertap.controller;
 
-import com.currency.qrcode.currency.model.ApiResult;
-import com.currency.qrcode.currency.model.request.ListingLatestRequest;
-import com.currency.qrcode.currency.service.CoinmarketCapService;
-import com.currency.qrcode.currency.service.QrCodeService;
+import com.blockchain.watertap.model.ApiResult;
+import com.blockchain.watertap.model.request.ListingLatestRequest;
+import com.blockchain.watertap.service.CoinmarketCapService;
+import com.blockchain.watertap.service.QrCodeService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;

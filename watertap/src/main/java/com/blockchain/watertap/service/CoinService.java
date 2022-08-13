@@ -1,10 +1,10 @@
 package com.blockchain.watertap.service;
 
-import com.currency.qrcode.currency.daemon.task.BtcTask;
-import com.currency.qrcode.currency.daemon.task.EthTask;
-import com.currency.qrcode.currency.model.response.AwardInfoResponse;
-import com.currency.qrcode.currency.model.response.CoinPriceResponse;
-import com.currency.qrcode.currency.model.response.EthAddressResponse;
+import com.blockchain.watertap.daemon.task.BtcTask;
+import com.blockchain.watertap.daemon.task.EthTask;
+import com.blockchain.watertap.model.response.AwardInfoResponse;
+import com.blockchain.watertap.model.response.CoinPriceResponse;
+import com.blockchain.watertap.model.response.EthAddressResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;

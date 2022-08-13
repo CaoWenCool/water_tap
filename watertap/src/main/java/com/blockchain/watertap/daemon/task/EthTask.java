@@ -1,6 +1,6 @@
 package com.blockchain.watertap.daemon.task;
 
-import com.currency.qrcode.currency.util.HttpsUtils;
+import com.blockchain.watertap.util.HttpsUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -21,9 +21,9 @@ public class EthTask {
 
     @PostConstruct
     public void init(){
-        logger.info("ethTask init start");
-        this.updateEthAddressBalance();
-        logger.info("ethTask init end");
+//        logger.info("ethTask init start");
+//        this.updateEthAddressBalance();
+//        logger.info("ethTask init end");
     }
 
     @Async("asyncTaskExecutor")

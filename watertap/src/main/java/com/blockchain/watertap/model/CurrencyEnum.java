@@ -1,6 +1,7 @@
 package com.blockchain.watertap.model;
 
-import com.currency.qrcode.currency.util.AddressCheck;
+
+import com.blockchain.watertap.util.AddressCheck;
 
 public enum CurrencyEnum {
     BTC("bitcoin"), ETH("etherenum"), TRX("tron"), USDT_OMNI("tether"), USDT_ERC20("tether"), USDT_TRC20("tether");

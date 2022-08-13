@@ -1,7 +1,7 @@
 package com.blockchain.watertap.database.mybatis.velocity;
 
 
-import com.currency.qrcode.currency.database.SqliPrevention;
+import com.blockchain.watertap.database.SqliPrevention;
 import org.apache.velocity.context.InternalContextAdapter;
 import org.apache.velocity.exception.MethodInvocationException;
 import org.apache.velocity.exception.ParseErrorException;

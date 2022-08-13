@@ -1,9 +1,9 @@
 package com.blockchain.watertap.controller;
 
-import com.currency.qrcode.currency.model.ApiResult;
-import com.currency.qrcode.currency.model.request.ListRequest;
-import com.currency.qrcode.currency.service.BaseService;
-import com.currency.qrcode.currency.service.OpeasenService;
+import com.blockchain.watertap.model.ApiResult;
+import com.blockchain.watertap.model.request.ListRequest;
+import com.blockchain.watertap.service.BaseService;
+import com.blockchain.watertap.service.OpeasenService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;

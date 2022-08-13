@@ -1,6 +1,7 @@
 package com.blockchain.watertap.model.response;
 
-import com.currency.qrcode.currency.mapper.opensea.model.OpeasenPO;
+
+import com.blockchain.watertap.mapper.opensea.model.OpeasenPO;
 
 public class AwardInfoResponse {
 

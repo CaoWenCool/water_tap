@@ -1,7 +1,7 @@
 package com.blockchain.watertap.database.mybatis;
 
 
-import com.currency.qrcode.currency.database.SqliPrevention;
+import com.blockchain.watertap.database.SqliPrevention;
 
 /**
  * Bean version of {@link SqliPrevention}, which can be instantiated and used in mybatis SQLs..

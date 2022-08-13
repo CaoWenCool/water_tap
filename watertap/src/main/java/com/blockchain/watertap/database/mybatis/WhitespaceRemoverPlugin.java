@@ -29,7 +29,7 @@ import java.util.List;
         args = {Connection.class, Integer.class}
     )
     })
-public class WhitespaceRemoverPlugin extends com.currency.qrcode.currency.database.mybatis.TypedInterceptor<StatementHandler> {
+public class WhitespaceRemoverPlugin extends TypedInterceptor<StatementHandler> {
 
     private static final Logger log = LoggerFactory.getLogger(WhitespaceRemoverPlugin.class);
 

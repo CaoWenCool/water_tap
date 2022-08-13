@@ -3,7 +3,7 @@
  */
 package com.blockchain.watertap.exception;
 
-import com.currency.qrcode.currency.i18n.I18nMessageUtils;
+import com.blockchain.watertap.i18n.I18nMessageUtils;
 import org.apache.http.HttpStatus;
 
 /**
@@ -98,12 +98,12 @@ public class XCloudCommonExceptions {
      */
     public static class AccessDeniedException extends XCloudException {
         public AccessDeniedException() {
-            super(I18nMessageUtils.message("AccessDeniedException"), HttpStatus.SC_FORBIDDEN, com.currency.qrcode.currency.exception.ErrorCode.ACCESS_DENIED);
+            super(I18nMessageUtils.message("AccessDeniedException"), HttpStatus.SC_FORBIDDEN, ErrorCode.ACCESS_DENIED);
             
         }
 
         public AccessDeniedException(String message) {
-            super(message, HttpStatus.SC_FORBIDDEN, com.currency.qrcode.currency.exception.ErrorCode.ACCESS_DENIED);
+            super(message, HttpStatus.SC_FORBIDDEN, ErrorCode.ACCESS_DENIED);
             
         }
     }
@@ -116,7 +116,7 @@ public class XCloudCommonExceptions {
     public static class InappropriateJSONException extends XCloudException {
         public InappropriateJSONException() {
             super(I18nMessageUtils.message("InappropriateJSONException"),
-                    HttpStatus.SC_BAD_REQUEST, com.currency.qrcode.currency.exception.ErrorCode.INAPPROPRIATE_JSON);
+                    HttpStatus.SC_BAD_REQUEST, ErrorCode.INAPPROPRIATE_JSON);
             setHttpStatus(HttpStatus.SC_BAD_REQUEST);
             
         }
@@ -129,7 +129,7 @@ public class XCloudCommonExceptions {
     public static class InvalidAccessKeyIdException extends XCloudException {
         public InvalidAccessKeyIdException() {
             super(I18nMessageUtils.message("InvalidAccessKeyIdException"), HttpStatus.SC_FORBIDDEN,
-                    com.currency.qrcode.currency.exception.ErrorCode.INVALID_ACCESS_KEY_ID);
+                    ErrorCode.INVALID_ACCESS_KEY_ID);
             
         }
     }
@@ -142,7 +142,7 @@ public class XCloudCommonExceptions {
         public InvalidHTTPAuthHeaderException() {
             super(I18nMessageUtils.message("InvalidHTTPAuthHeaderException"),
                     HttpStatus.SC_BAD_REQUEST,
-                    com.currency.qrcode.currency.exception.ErrorCode.INVALID_HTTP_AUTH_HEADER);
+                    ErrorCode.INVALID_HTTP_AUTH_HEADER);
             
         }
     }
@@ -154,12 +154,12 @@ public class XCloudCommonExceptions {
     public static class InvalidHTTPRequestException extends XCloudException {
         public InvalidHTTPRequestException() {
             super(I18nMessageUtils.message("InvalidHTTPRequestException"), HttpStatus.SC_BAD_REQUEST,
-                    com.currency.qrcode.currency.exception.ErrorCode.INVALIED_HTTP_REQUEST);
+                    ErrorCode.INVALIED_HTTP_REQUEST);
             
         }
 
         public InvalidHTTPRequestException(String message) {
-            super(message, HttpStatus.SC_BAD_REQUEST, com.currency.qrcode.currency.exception.ErrorCode.INVALIED_HTTP_REQUEST);
+            super(message, HttpStatus.SC_BAD_REQUEST, ErrorCode.INVALIED_HTTP_REQUEST);
             
         }
     }
@@ -170,12 +170,12 @@ public class XCloudCommonExceptions {
      */
     public static class InvalidURIException extends XCloudException {
         public InvalidURIException() {
-            super(I18nMessageUtils.message("InvalidURIException"), HttpStatus.SC_BAD_REQUEST, com.currency.qrcode.currency.exception.ErrorCode.INVALIED_URL);
+            super(I18nMessageUtils.message("InvalidURIException"), HttpStatus.SC_BAD_REQUEST, ErrorCode.INVALIED_URL);
             
         }
 
         public InvalidURIException(String message) {
-            super(message, HttpStatus.SC_BAD_REQUEST, com.currency.qrcode.currency.exception.ErrorCode.INVALIED_URL);
+            super(message, HttpStatus.SC_BAD_REQUEST, ErrorCode.INVALIED_URL);
             
         }
     }
@@ -188,7 +188,7 @@ public class XCloudCommonExceptions {
         public MalformedJSONException() {
             super(I18nMessageUtils.message("MalformedJSONException"),
                     HttpStatus.SC_BAD_REQUEST,
-                    com.currency.qrcode.currency.exception.ErrorCode.MALFORMED_JSON);
+                    ErrorCode.MALFORMED_JSON);
             
         }
     }
@@ -201,7 +201,7 @@ public class XCloudCommonExceptions {
         public InvalidVersionException() {
             super(I18nMessageUtils.message("InvalidVersionException"),
                     HttpStatus.SC_NOT_FOUND,
-                    com.currency.qrcode.currency.exception.ErrorCode.INVALID_VERSION);
+                    ErrorCode.INVALID_VERSION);
             
         }
     }
@@ -213,12 +213,12 @@ public class XCloudCommonExceptions {
     public static class OptInRequiredException extends XCloudException {
         public OptInRequiredException() {
             super(I18nMessageUtils.message("OptInRequiredException"), HttpStatus.SC_FORBIDDEN,
-                    com.currency.qrcode.currency.exception.ErrorCode.OPT_IN_REQUIRED);
+                    ErrorCode.OPT_IN_REQUIRED);
             
         }
 
         public OptInRequiredException(String message) {
-            super(message, HttpStatus.SC_FORBIDDEN, com.currency.qrcode.currency.exception.ErrorCode.OPT_IN_REQUIRED);
+            super(message, HttpStatus.SC_FORBIDDEN, ErrorCode.OPT_IN_REQUIRED);
             
         }
     }
@@ -232,7 +232,7 @@ public class XCloudCommonExceptions {
     public static class PreconditionFailedException extends XCloudException {
         public PreconditionFailedException() {
             super(I18nMessageUtils.message("PreconditionFailedException"), HttpStatus.SC_PRECONDITION_FAILED,
-                    com.currency.qrcode.currency.exception.ErrorCode.PRE_CONDITION_FAILED);
+                    ErrorCode.PRE_CONDITION_FAILED);
             
         }
     }
@@ -245,7 +245,7 @@ public class XCloudCommonExceptions {
     public static class RequestExpiredException extends XCloudException {
         public RequestExpiredException(String datetime) {
             super(I18nMessageUtils.message("RequestExpiredException", datetime), HttpStatus.SC_BAD_REQUEST,
-                    com.currency.qrcode.currency.exception.ErrorCode.REQUEST_EXPIRED);
+                    ErrorCode.REQUEST_EXPIRED);
             
         }
     }
@@ -257,7 +257,7 @@ public class XCloudCommonExceptions {
     public static class IdempotentParameterMismatchException extends XCloudException {
         public IdempotentParameterMismatchException() {
             super(I18nMessageUtils.message("IdempotentParameterMismatchException"), HttpStatus.SC_FORBIDDEN,
-                    com.currency.qrcode.currency.exception.ErrorCode.IDEMPOTENT_PARAMETER_MISMATCH);
+                    ErrorCode.IDEMPOTENT_PARAMETER_MISMATCH);
             
         }
     }
@@ -269,7 +269,7 @@ public class XCloudCommonExceptions {
     public static class SignatureDoesNotMatchException extends XCloudException {
         public SignatureDoesNotMatchException() {
             super(I18nMessageUtils.message("SignatureDoesNotMatchException"), HttpStatus.SC_BAD_REQUEST,
-                    com.currency.qrcode.currency.exception.ErrorCode.SIGNATURE_DOES_NOT_MATCH);
+                    ErrorCode.SIGNATURE_DOES_NOT_MATCH);
             
         }
     }
@@ -284,7 +284,7 @@ public class XCloudCommonExceptions {
     public static class ServerInternalException extends XCloudException {
         public ServerInternalException(Exception causeException) {
             super(I18nMessageUtils.message("ServerInternalException"), HttpStatus.SC_INTERNAL_SERVER_ERROR,
-                    com.currency.qrcode.currency.exception.ErrorCode.INTERNAL_ERROR);
+                    ErrorCode.INTERNAL_ERROR);
             super.initCause(causeException);
             
         }
@@ -298,7 +298,7 @@ public class XCloudCommonExceptions {
 
         public RoleNotFoundException(String message) {
             super(I18nMessageUtils.message("RoleNotFoundException", message), HttpStatus.SC_BAD_REQUEST,
-                    com.currency.qrcode.currency.exception.ErrorCode.ROLE_NOT_FOUND);
+                    ErrorCode.ROLE_NOT_FOUND);
             
         }
     }

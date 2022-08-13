@@ -1,7 +1,7 @@
 package com.blockchain.watertap.database.mybatis;
 
 
-import com.currency.qrcode.currency.database.SqlEscape;
+import com.blockchain.watertap.database.SqlEscape;
 
 /**
  * Bean version of {@link SqlEscape}, which can be instantiated and used in mybatis SQLs.

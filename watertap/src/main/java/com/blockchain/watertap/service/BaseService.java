@@ -1,7 +1,7 @@
 package com.blockchain.watertap.service;
 
-import com.currency.qrcode.currency.model.response.ActivityTimeResponse;
-import com.currency.qrcode.currency.util.TimeUtils;
+import com.blockchain.watertap.model.response.ActivityTimeResponse;
+import com.blockchain.watertap.util.TimeUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 

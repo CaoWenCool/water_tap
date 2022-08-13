@@ -3,7 +3,7 @@
  */
 package com.blockchain.watertap.model.request;
 
-import com.currency.qrcode.currency.util.JsonConvertUtil;
+import com.blockchain.watertap.util.JsonConvertUtil;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;

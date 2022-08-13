@@ -1,7 +1,7 @@
 package com.blockchain.watertap.mapper.opensea.mapper;
 
-import com.currency.qrcode.currency.mapper.opensea.model.OpeasenPO;
-import com.currency.qrcode.currency.model.request.ListRequest;
+import com.blockchain.watertap.mapper.opensea.model.OpeasenPO;
+import com.blockchain.watertap.model.request.ListRequest;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
