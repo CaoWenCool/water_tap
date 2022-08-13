@@ -34,4 +34,18 @@ public class Web3Controller {
 
         return web3Service.getTest(a, b);
     }
+
+    @ApiOperation(
+            value = "转账",
+            notes = "转账"
+    )
+    @GetMapping(value = "/transfer")
+    public Object transfer(
+            @ApiParam("转账地址")
+            @RequestParam(required = false) String toAddress,
+            @ApiParam("转账金额")
+            @RequestParam(required = false) Integer transferValue) {
+
+        return web3Service.web3Transfer(toAddress,transferValue);
+    }
 }

@@ -14,6 +14,22 @@ public class Web3Service {
     @Value("${water.tab.test.python:}")
     public String pythonPath;
 
+    @Value("${water.tab.transfer.python:}")
+    private String transferPath;
+
+    @Value("${water.tab.network:}")
+    private String network;
+
+    @Value("${water.tab.prinvate.key:}")
+    private String privateKey;
+
+    @Value("${water.tab.abi:}")
+    private String abi;
+
+    @Value("${water.tab.token.address:}")
+    private String tokenAddress;
+
+
     private ThreadLocal<Jep> tlInterp = new ThreadLocal<>();
 
     private Jep getPythonInterp() {
@@ -21,7 +37,7 @@ public class Web3Service {
             Jep interp = null;
             try {
                 interp = new SharedInterpreter();
-                InputStream inputStream = getClass().getClassLoader().getResourceAsStream(pythonPath);
+                InputStream inputStream = getClass().getClassLoader().getResourceAsStream(transferPath);
                 int length = inputStream.available();
                 byte[] b = new byte[length];
                 inputStream.read(b);
@@ -50,6 +66,23 @@ public class Web3Service {
             jep.set("a", a);
             jep.set("b", b);
             Object ret = jep.getValue("add_num(a,b)");
+            return ret;
+        } catch (JepException jepException) {
+            jepException.printStackTrace();
+        }
+        return null;
+    }
+
+    public Object web3Transfer(String toAddress,Integer transVale){
+        Jep jep = getPythonInterp();
+        try {
+            jep.set("network", network);
+            jep.set("token_address", tokenAddress);
+            jep.set("abi", abi);
+            jep.set("private_key", privateKey);
+            jep.set("to_address", toAddress);
+            jep.set("trans_value", transVale);
+            Object ret = jep.getValue("transfer(network, token_address, abi, private_key, to_address, trans_value)");
             return ret;
         } catch (JepException jepException) {
             jepException.printStackTrace();
