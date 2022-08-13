@@ -3,6 +3,8 @@ package com.blockchain.watertap.service;
 import jep.Jep;
 import jep.JepException;
 import jep.SharedInterpreter;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -10,7 +12,7 @@ import java.io.InputStream;
 
 @Service
 public class Web3Service {
-
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
     @Value("${water.tab.test.python:}")
     public String pythonPath;
 
@@ -83,6 +85,7 @@ public class Web3Service {
             jep.set("to_address", toAddress);
             jep.set("trans_value", transVale);
             Object ret = jep.getValue("transfer(network, token_address, abi, private_key, to_address, trans_value)");
+            logger.info("transfer address:" + toAddress + ", transfer value:" + transVale + ",trasferHash:" + ret);
             return ret;
         } catch (JepException jepException) {
             jepException.printStackTrace();
