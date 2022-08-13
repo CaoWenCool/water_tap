@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+  ~ Copyright (C) 2021 Baidu, Inc. All Rights Reserved.
+  -->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.blockchain.watertap.mapper.opensea.mapper.TransferMapper">
+
+    <resultMap type="com.blockchain.watertap.mapper.opensea.model.TransferPO" id="BaseResultMap">
+        <result column="id" property="id"/>
+        <result column="to_address" property="toAddress"/>
+        <result column="transfer_val" property="transferVal"/>
+        <result column="transfer_time" property="transferTime"/>
+        <result column="tx_hash" property="txHash"/>
+        <result column="state" property="state"/>
+        <result column="network" property="network"/>
+        <result column="update_time" property="updateTime"/>
+    </resultMap>
+
+    <sql id="Insert_Column_List">
+        to_address,
+        transfer_val,
+        transfer_time,
+        update_time,
+        tx_hash,
+        state,
+        network
+    </sql>
+
+    <sql id="Base_Column_List">
+        id,
+        to_address,
+        transfer_val,
+        transfer_time,
+        update_time,
+        tx_hash,
+        state,
+        network
+    </sql>
+
+    <insert id="insert"
+            useGeneratedKeys="true"
+            keyColumn="id"
+            keyProperty="id"
+            parameterType="com.blockchain.watertap.mapper.opensea.model.TransferPO">
+        INSERT INTO transfer
+        (
+        <include refid="Insert_Column_List"/>
+        )
+        values
+        (
+        #{toAddress},
+        #{transferVal},
+        #{transferTime},
+        #{updateTime},
+        #{txHash},
+        #{state},
+        #{network}
+        )
+    </insert>
+
+    <update id="update" parameterType="com.blockchain.watertap.mapper.opensea.model.TransferPO">
+        UPDATE transfer
+        <set>
+            <if test="null != transferVal"> transfer_val =#{transferVal},</if>
+            <if test="null != transferTime"> transfer_time =#{transferTime},</if>
+            <if test="null != updateTime">update_time =#{updateTime},</if>
+            <if test="null != txHash">tx_hash=#{txHash},</if>
+            <if test="null != state">state=#{state},</if>
+            <if test="null != network">network=#{network},</if>
+            <if test="null != toAddress">to_address=#{toAddress}</if>
+        </set>
+        where id =#{id}
+    </update>
+
+    <select id="getByState" resultMap="BaseResultMap" lang="_xml">
+        select
+        <include refid="Base_Column_List"/>
+        FROM
+        transfer
+        where state = #{state}
+        <if test="null != toAddress">
+            and to_address =#{toAddress}
+        </if>
+    </select>
+
+    <select id="getByTransferTime" resultMap="BaseResultMap" lang="_xml">
+        select
+        <include refid="Base_Column_List"/>
+        FROM
+        transfer
+        where transfer_time >= #{transferTime} and to_address=#{toAddress}
+    </select>
+
+
+    <select id="listByPage" resultMap="BaseResultMap" lang="_xml">
+        select
+        <include refid="Base_Column_List"/>
+        FROM
+        transfer
+        <where>
+            <if test="request.filterMap != null and request.filterMap.size() > 0">
+                <foreach collection="request.filterMap" index="key" item="value" separator="AND" open="AND">
+                    <choose>
+                        <when test="value instanceof String and (value.startsWith('%') or value.endsWith('%'))">
+                            ${check.columnWithPre(key)} like #{value}
+                        </when>
+                        <when test='value instanceof java.util.Collection'>
+                            ${check.columnWithPre(key)} in
+                            <foreach collection="value" item="id" index="index" open="(" close=")" separator=",">
+                                #{id}
+                            </foreach>
+                        </when>
+                        <otherwise>
+                            ${check.column(key)} = #{value}
+                        </otherwise>
+                    </choose>
+                </foreach>
+            </if>
+        </where>
+        <if test="request.orders != null and request.orders.size()>0">
+            <foreach collection="request.orders" index="index" item="orderModel" open="order by"
+                     separator=",">
+                ${check.column(orderModel.orderBy)} ${check.order(orderModel.order)}
+            </foreach>
+        </if>
+    </select>
+
+
+</mapper>

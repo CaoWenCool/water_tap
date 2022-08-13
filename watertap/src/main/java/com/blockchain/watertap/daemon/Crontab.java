@@ -1,7 +1,6 @@
 package com.blockchain.watertap.daemon;
 
-import com.blockchain.watertap.daemon.task.BtcTask;
-import com.blockchain.watertap.daemon.task.EthTask;
+import com.blockchain.watertap.service.Web3Service;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,25 +12,14 @@ public class Crontab {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Autowired
-    EthTask ethTask;
-
-    @Autowired
-    BtcTask btcTask;
+    Web3Service web3Service;
 
     /**
      * 60秒钟检查一次
      */
-//    @Scheduled(fixedRate = 1000 * 60)
-//    public void getEthBalance(){
-//        ethTask.updateEthAddressBalance();
-//    }
-
-    /**
-     * 1秒钟检查一次
-     */
-//    @Scheduled(fixedRate = 1000 * 60 * 20)
-//    public void getBtcPriceInfo() throws URISyntaxException {
-//        btcTask.updateBtcPriceInfo();
-//    }
+    @Scheduled(fixedRate = 1000 * 60)
+    public void getEthBalance(){
+        web3Service.checkAndSend();
+    }
 
 }

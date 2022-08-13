@@ -6,65 +6,99 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Document</title>
     <script type="text/javascript" th:src="@{/static/js/jquery-3.6.0.min.js}"></script>
-    <link rel="stylesheet" type="text/css" th:href="@{/static/water/css/common.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/static/water/css/common.css}"/>
     <script>
-        var url = "http://8.218.81.14:8080"
-        function transfer(){
+        var url = "http://127.0.0.1:8080"
+
+        function transfer() {
             var toSendAddress = $("#toAddress").val();
             var transferUrl = url + "/web3/transfer?toAddress=" + toSendAddress;
             $.ajax({
-                url:transferUrl,
-                type:'get',
+                url: transferUrl,
+                type: 'get',
                 dataType: 'json',
                 contentType: "application/json;charset=UTF-8",
-                success:function (res){
+                success: function (res) {
                     console.log(res);
-                    alert("send success!");
-                },error:function (xhr,errorMessage,e){
-                    alert(errorMessage);
+                    if (res.code != 200) {
+                        alert("send fail!  " + res.msg);
+                    } else {
+                        alert("send success!");
+                    }
+                }, error: function (xhr, errorMessage, e) {
+                    console.log(xhr);
+                    console.log(errorMessage)
                     console.log(e);
+                    alert(errorMessage)
                 }
             })
         }
+
+        $(document).ready(function () {
+            var pageUrl = url + "/web3/transfer/history";
+            $.ajax({
+                url: pageUrl,
+                type: 'get',
+                dataType: 'json',
+                success: function (res) {
+                    if (res.code == 200) {
+                        var resData = res.data;
+                        for (var i = 0; i < resData.length; i++) {
+                            var url = resData[i].url;
+                            var time = resData[i].time;
+                            $("#toAddress-" + i).text(url);
+                            $("#timeAgo-" + i).text(time);
+                        }
+                    } else {
+                        alert("Get fail!  " + res.msg);
+                    }
+
+
+                },
+                error: function (xhr, errorMessage, e) {
+                    alert(errorMessage)
+                }
+            })
+        });
     </script>
 </head>
 <body>
-    <div class="logo">
+<div class="logo">
+</div>
+<div class="metaunva">
+</div>
+<div class="send-token">
+</div>
+<div class="send">
+    <div class="send-address-text">
+        <input id="toAddress" type="text" placeholder="Enter your wallet address(0x...) or ENS domain">
     </div>
-    <div class="metaunva">
+    <div class="send-address-button">
+        <input type="button" value="Send Request" onclick="transfer()">
     </div>
-    <div class="send-token">
+</div>
+<div class="history">
+    <div class="history-table">
+        <table>
+            <thead>
+            <tr>
+                <th>Your Transactions</th>
+                <th>Time</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <th id="toAddress-0">.....</th>
+                <th id="timeAgo-0">0 minutes ago</th>
+            </tr>
+            <tr>
+                <th id="toAddress-1">.....</th>
+                <th id="timeAgo-1">0 minutes ago</th>
+            </tr>
+            </tbody>
+        </table>
     </div>
-    <div class="send">
-        <div class="send-address-text">
-            <input id="toAddress" type="text" placeholder="Enter your wallet address(0x...) or ENS domain">
-        </div>
-        <div class="send-address-button">
-            <input type="button" value="Send Request" onclick="transfer()">
-        </div>
-    </div>
-    <div class="history">
-        <div class="history-table">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Your Transactions</th>
-                        <th>Time</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <th>0x3086a6d10161960Df5D9203110f23754b49fFEd8</th>
-                        <th>20 minutes ago</th>
-                    </tr>
-                    <tr>
-                        <th>0x3086a6d10161960Df5D9203110f23754b49fFEd8</th>
-                        <th>20 minutes ago</th>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
+</div>
 
 </body>
 </html>

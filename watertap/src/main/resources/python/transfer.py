@@ -22,12 +22,16 @@ def transfer(network, token_address, abi, private_key, to_address, trans_value):
     acc = Account.from_key(private_key=private_key)
     from_address = Web3.toChecksumAddress(acc.address)
     balance = token_contract.functions.balanceOf(from_address).call()
+    print(Web3.toWei(balance, 'ether'))
     # TODO 添加余额的判断
     to_address = Web3.toChecksumAddress(to_address)
     nonce = w3.eth.getTransactionCount(from_address)
     gas_price = w3.eth.gasPrice
     trans_value = float(trans_value)
     value = Web3.toWei(trans_value, 'ether')
+    balance = Web3.toWei(balance, 'ether')
+    if balance < value:
+        return -1
     gas = token_contract.functions.transfer(to_address, int(value)).estimateGas({'from': from_address})
     transaction_contract = token_contract.functions.transfer(to_address, int(value)).buildTransaction(
         {'gasPrice': gas_price, 'gas': gas, 'nonce': nonce})

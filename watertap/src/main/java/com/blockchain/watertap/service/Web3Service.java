@@ -1,14 +1,25 @@
 package com.blockchain.watertap.service;
 
+import com.blockchain.watertap.exception.XCloudCommonExceptions;
+import com.blockchain.watertap.mapper.opensea.mapper.TransferMapper;
+import com.blockchain.watertap.mapper.opensea.model.TransferPO;
+import com.blockchain.watertap.model.request.ListRequest;
+import com.blockchain.watertap.model.response.TransferResponse;
+import com.blockchain.watertap.model.transfer.TransferStateEnum;
+import com.blockchain.watertap.util.LocalDateTimeUtil;
 import jep.Jep;
 import jep.JepException;
 import jep.SharedInterpreter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 import java.io.InputStream;
+import java.time.LocalDateTime;
+import java.util.*;
 
 @Service
 public class Web3Service {
@@ -33,6 +44,15 @@ public class Web3Service {
 
     @Value("${water.tab.blockchain.browser:}")
     private String blockChainBrowser;
+
+    @Autowired
+    TransferMapper transferMapper;
+
+    private static final String PENDING = "Pending";
+
+    private static final String URL_PREFIX = "<a href=\"";
+    private static final String URL_MIDDLE = "\">";
+    private static final String URL_SUFFIX = "</a>";
 
 
     private ThreadLocal<Jep> tlInterp = new ThreadLocal<>();
@@ -78,22 +98,108 @@ public class Web3Service {
         return null;
     }
 
-    public Object web3Transfer(String toAddress,Integer transVale){
+    public List<TransferResponse> transferHis() {
+        ListRequest listRequest = new ListRequest("desc", "id", 1, 2);
+        List<TransferPO> transferPOList = transferMapper.listByPage(listRequest);
+        List<TransferResponse> transferResponses = new ArrayList<>();
+        if (null == transferPOList || transferPOList.size() == 0) {
+            return transferResponses;
+        }
+        for (TransferPO eachTransfer : transferPOList) {
+            TransferResponse transferResponse = new TransferResponse();
+            if (TransferStateEnum.READY.getState().equals(eachTransfer.getState())) {
+                transferResponse.setTime(PENDING);
+                transferResponse.setUrl(eachTransfer.getToAddress());
+            } else {
+                LocalDateTime transferTime = eachTransfer.getTransferTime();
+                LocalDateTime nowTime = LocalDateTime.now();
+                transferResponse.setTime(LocalDateTimeUtil.calTimeDiff(transferTime, nowTime));
+                StringBuffer sb = new StringBuffer();
+                sb.append(URL_PREFIX);
+                sb.append(eachTransfer.getNetwork());
+                sb.append(eachTransfer.getTxHash());
+                sb.append(URL_MIDDLE);
+                sb.append(eachTransfer.getToAddress());
+                sb.append(URL_SUFFIX);
+                transferResponse.setUrl(sb.toString());
+            }
+            transferResponses.add(transferResponse);
+        }
+        return transferResponses;
+    }
+
+    public void transferReady(String toAddress, Integer transVale) {
+        // 判断是否已经存在
+        List<TransferPO> transferPOHis = transferMapper.getByState(TransferStateEnum.READY.getState(), toAddress);
+        if (null != transferPOHis && transferPOHis.size() > 0) {
+            throw new XCloudCommonExceptions.RequestInvalidException("this address is ready to send,please do not submit again!");
+        }
+        // 判断时间
+        LocalDateTime yesDateTime = LocalDateTime.now().plusDays(-1);
+        List<TransferPO> transferPOList = transferMapper.getByTransferTime(yesDateTime, toAddress);
+        if (null != transferPOList && transferPOList.size() > 0) {
+            throw new XCloudCommonExceptions.RequestInvalidException("every address only get once at the same day!");
+        }
+        // 插入数据库
+        TransferPO transferPO = new TransferPO();
+        transferPO.setToAddress(toAddress);
+        transferPO.setTransferVal(transVale);
+        transferPO.setNetwork(blockChainBrowser);
+        transferPO.setState(TransferStateEnum.READY.getState());
+        transferPO.setUpdateTime(LocalDateTime.now());
+        transferMapper.insert(transferPO);
+    }
+
+    @Async("asyncTaskExecutor")
+    public void checkAndSend() {
+        List<TransferPO> transferPOHis = transferMapper.getByState(TransferStateEnum.READY.getState(), null);
+        if (null == transferPOHis || transferPOHis.size() == 0) {
+            return;
+        }
+        // 去重，防止重发
+        Map<String, TransferPO> toAddressMap = new HashMap<>();
+        for (TransferPO eachTransfer : transferPOHis) {
+            if (toAddressMap.containsKey(eachTransfer.getToAddress())) {
+                continue;
+            }
+            toAddressMap.put(eachTransfer.getToAddress(), eachTransfer);
+        }
+        Iterator<Map.Entry<String, TransferPO>> entries = toAddressMap.entrySet().iterator();
+        while (entries.hasNext()) {
+            Map.Entry<String, TransferPO> entry = entries.next();
+            web3Transfer(entry.getValue());
+        }
+    }
+
+
+    public void web3Transfer(TransferPO transferPO) {
         Jep jep = getPythonInterp();
+        Integer state = TransferStateEnum.FAIL.getState();
+        String txHash = null;
         try {
             jep.set("network", network);
             jep.set("token_address", tokenAddress);
             jep.set("abi", abi);
             jep.set("private_key", privateKey);
-            jep.set("to_address", toAddress);
-            jep.set("trans_value", transVale);
+            jep.set("to_address", transferPO.getToAddress());
+            jep.set("trans_value", transferPO.getTransferVal());
             Object ret = jep.getValue("transfer(network, token_address, abi, private_key, to_address, trans_value)");
-            logger.info("transfer address:" + toAddress + ", transfer value:" + transVale + ",trasferHash:" + ret);
-            return blockChainBrowser + ret;
+            logger.info("transfer address:" + transferPO.getToAddress() + ", transfer value:" + transferPO.getTransferVal() + ",trasferHash:" + ret);
+            // 进行更新
+            txHash = String.valueOf(ret);
+            if (!txHash.equals("-1")) {
+                state = TransferStateEnum.SUCCESS.getState();
+            } else {
+                logger.error("The from accound of balance not have enough token!!!");
+            }
         } catch (JepException jepException) {
-            jepException.printStackTrace();
+            logger.error(jepException.getMessage());
+            logger.info("transfer address:" + transferPO.getToAddress() + ", transfer value:" + transferPO.getTransferVal() + ",trasferHash:" + txHash);
         }
-        return null;
+        transferPO.setState(state);
+        transferPO.setTransferTime(LocalDateTime.now());
+        transferPO.setTxHash(txHash);
+        transferMapper.update(transferPO);
     }
 
 
