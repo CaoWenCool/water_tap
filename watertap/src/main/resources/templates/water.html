@@ -24,6 +24,7 @@
                         alert("send fail!  " + res.msg);
                     } else {
                         alert("send success!");
+                        window.location.reload();
                     }
                 }, error: function (xhr, errorMessage, e) {
                     console.log(xhr);
