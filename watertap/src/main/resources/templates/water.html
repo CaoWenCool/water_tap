@@ -15,6 +15,7 @@
             $.ajax({
                 url:transferUrl,
                 type:'post',
+                dataType: 'json',
                 data:{"toAddress":toAddress},
                 contentType: "application/json",
                 success:function (res){

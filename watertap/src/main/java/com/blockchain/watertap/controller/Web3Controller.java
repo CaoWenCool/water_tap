@@ -1,5 +1,6 @@
 package com.blockchain.watertap.controller;
 
+import com.alibaba.fastjson.JSONObject;
 import com.blockchain.watertap.service.Web3Service;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -42,6 +43,8 @@ public class Web3Controller {
             @ApiParam("转账地址")
             @RequestParam String toAddress) {
         Object txHash = web3Service.web3Transfer(toAddress,SEND_VALUE);
-        return String.valueOf(txHash);
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("url", txHash);
+        return jsonObject.toString();
     }
 }
