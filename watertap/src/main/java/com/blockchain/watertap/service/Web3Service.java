@@ -49,7 +49,6 @@ public class Web3Service {
         try {
             jep.set("a", a);
             jep.set("b", b);
-            jep.eval("input = bytes(b % 256 for b in input)");
             Object ret = jep.getValue("add_num(a,b)");
             return ret;
         } catch (JepException jepException) {
