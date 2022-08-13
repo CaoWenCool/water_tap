@@ -6,10 +6,7 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @Validated
 @RequestMapping(value = "/web3", produces = "application/json")
@@ -40,7 +37,7 @@ public class Web3Controller {
             value = "转账",
             notes = "转账"
     )
-    @GetMapping(value = "/transfer")
+    @PostMapping(value = "/transfer")
     public Object transfer(
             @ApiParam("转账地址")
             @RequestParam String toAddress) {
