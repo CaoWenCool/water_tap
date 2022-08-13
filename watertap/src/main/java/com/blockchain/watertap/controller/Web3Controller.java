@@ -38,10 +38,10 @@ public class Web3Controller {
             notes = "转账"
     )
     @PostMapping(value = "/transfer")
-    public Object transfer(
+    public String transfer(
             @ApiParam("转账地址")
             @RequestParam String toAddress) {
-
-        return web3Service.web3Transfer(toAddress,SEND_VALUE);
+        Object txHash = web3Service.web3Transfer(toAddress,SEND_VALUE);
+        return String.valueOf(txHash);
     }
 }
