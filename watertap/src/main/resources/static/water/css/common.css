@@ -182,9 +182,9 @@ body {
 }
 
 .send-address-button input{
-    width: 11%;
+    width: 14%;
     height: 60%;
-    text-align: right;
+    text-align: center;
     border: 1px solid #10CB6C;
     border-radius: 10px;
     background: linear-gradient(90deg, #10CB6C 0%, #09A656 95.29%);
