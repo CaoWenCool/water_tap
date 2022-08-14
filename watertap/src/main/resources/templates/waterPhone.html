@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Document</title>
+    <script type="text/javascript" th:src="@{/static/js/jquery-3.6.0.min.js}"></script>
+    <link rel="stylesheet" type="text/css" th:href="@{/static/water/css/commonPhone.css}"/>
+    <script>
+        var server_url = "http://127.0.0.1:8080/"
+
+        function transfer() {
+            var toSendAddress = $("#toAddress").val();
+            var transferUrl = server_url + "/web3/transfer?toAddress=" + toSendAddress;
+            $.ajax({
+                url: transferUrl,
+                type: 'get',
+                dataType: 'json',
+                contentType: "application/json;charset=UTF-8",
+                success: function (res) {
+                    console.log(res);
+                    if (res.code != 200) {
+                        showPopup("send fail! " + res.msg);
+                        // alert("send fail!  " + res.msg);
+                    } else {
+                        showPopup("Send Success!")
+                        // alert("send success!");
+                        window.location.reload();
+                    }
+                }, error: function (xhr, errorMessage, e) {
+                    console.log(xhr);
+                    console.log(errorMessage)
+                    console.log(e);
+                    showPopup(errorMessage)
+                }
+            })
+        }
+
+        $(document).ready(function () {
+            var pageUrl = server_url + "/web3/transfer/history";
+            $.ajax({
+                url: pageUrl,
+                type: 'get',
+                dataType: 'json',
+                success: function (res) {
+                    console.log(res)
+                    if (res.code == 200) {
+                        var resData = res.data;
+                        for (var i = 0; i < resData.length; i++) {
+                            var url = resData[i].url;
+                            var toAddress =resData[i].toAddress;
+                            var time = resData[i].time;
+                            $("#toAddress-a-" + i).text(toAddress);
+                            $("#timeAgo-" + i).text(time);
+                            if(null != url){
+                                $("#toAddress-a-" + i).attr("href",url);
+                            }
+                        }
+                    } else {
+                        showPopup("Get fail! " + res.msg)
+                    }
+
+
+                },
+                error: function (xhr, errorMessage, e) {
+                    showPopup(errorMessage)
+                }
+            })
+        });
+
+        //给定一个值,使点 确定按钮 为 true,点其他为 false
+        var isDelete = false;
+        //显示弹窗函数，设置display为flex
+        function showPopup(msg) {
+            $('#tip_message').text(msg);
+            document.getElementById("popup").style.display = "flex";
+        }
+
+        //关闭弹窗函数，设置display为none，传一个参数，把true和false传进去
+        function hidePopup(x, e) {
+            //处理冒泡，event 的 cancelable 事件返回一个布尔值
+            // 确定按钮有event参数，不会返回undefined（因为取消和其他区域，没传值 默认undefined）
+            if (e != undefined) {
+                e.cancelBubble = true;
+            }
+            document.getElementById("popup").style.display = "none";
+            isDelete = x;
+            console.log(x);
+        }
+    </script>
+</head>
+<body>
+<div class="logo">
+</div>
+<div class="metaunva">
+</div>
+<div class="send-token">
+</div>
+<div class="send">
+    <div class="send-address-text">
+        <input id="toAddress" type="text" placeholder="Enter your wallet address(0x...) or ENS domain">
+    </div>
+    <div class="send-address-button">
+        <input type="button" value="Send Request" onclick="transfer()">
+    </div>
+</div>
+<div class="history">
+    <div class="history-table">
+        <table>
+            <thead>
+            <tr>
+                <th>Your Transactions</th>
+                <th>Time</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <th id="toAddress-0"><a id="toAddress-a-0" href="#">.....</a></th>
+                <th id="timeAgo-0">0 minutes ago</th>
+            </tr>
+            <tr>
+                <th id="toAddress-1"><a id="toAddress-a-1" href="#">.....</a></th>
+                <th id="timeAgo-1">0 minutes ago</th>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!--给出弹窗的内容-->
+<!--弹窗点击除 确定按钮 以外的 取消和其他区域 时弹窗都会消失且输出false，点击 确定按钮 时为true-->
+<div class="popup" id="popup" onclick="hidePopup(false)">
+    <div class="popup-content">
+        <div class="top">
+            <p id="tip_message">提示信息</p>
+        </div>
+        <div class="btn">
+            <!--因为两个按钮在popup这个大框里，点击确定和取消就会同时点击父元素，会产生事件冒泡（即点击确定，会同时出现true和false）-->
+            <button type="button" onclick="hidePopup(true,event)">determine</button>
+        </div>
+    </div>
+</div>
+</div>
+
+</body>
+</html>

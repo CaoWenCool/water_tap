@@ -1,0 +1,236 @@
+body {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image:url('../image/background.jpg');
+}
+
+.logo {
+    width: 22.8%;
+    height: 10.8%;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-image: url(../image/logo.jpg);
+    margin-top: 4.1%;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.metaunva {
+    width: 80%;
+    height: 4%;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-image: url(../image/metaunva.jpg);
+    margin-top: 4%;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.send-token {
+    width: 80%;
+    height: 3%;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-image: url(../image/sendtoken.jpg);
+    margin-top: 4%;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.send {
+    width: 84%;
+    height: 20%;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-image: url(../image/sendbackground.jpg);
+    margin-top: 4%;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.history {
+    width: 84%;
+    height: 35%;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-image: url(../image/history.jpg);
+    margin-top: 5%;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.history-table {
+    width: 94%;
+    height: 94%;
+    margin-right: auto;
+    margin-left: auto;
+    padding-top: 2%;
+}
+
+.history-table table{
+    width: 100%;
+    height: 100%;
+    margin-top: 1%;
+}
+
+.history-table table thead{
+    width: 100%;
+    height: 40%;
+}
+
+.history-table table tbody{
+    width: 100%;
+    height: 60%;
+}
+
+.history-table table thead tr{
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, #ED824E 0.01%, #EA4A5C 101.09%);
+    border-radius: 10px 10px 0px 0px;
+}
+
+.history-table table tbody tr{
+    width: 100%;
+    height: 45%;
+    background: #FFFFFF;
+    border-width: 0px 1px 1px 1px;
+    border-style: solid;
+    border-color: #C8C8C8;
+    border-radius: 0px 0px 10px 10px;
+}
+
+.history-table table thead tr th:nth-child(1){
+    width: 60%;
+    height: 100%;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 80%;
+    text-align: center;
+    color: #FFFFFF;
+}
+
+.history-table table thead tr th:nth-child(2){
+    width: 40%;
+    height: 100%;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 80%;
+    text-align: center;
+    color: #FFFFFF;
+}
+
+.history-table table tbody tr th:nth-child(1){
+    width: 70%;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 80%;
+    color: #000000;
+    white-space: pre-line;
+    word-break: break-all;
+    word-wrap: break-word;
+}
+
+.history-table table tbody tr th:nth-child(2){
+    width: 30%;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 80%;
+    color: #000000;
+}
+
+
+.send-address-text {
+    outline-style: none;
+    width: 90%;
+    height: 27%;
+    text-align: center;
+    margin-right: auto;
+    margin-left: auto;
+    padding-top: 4%;
+}
+
+.send-address-button {
+    outline-style: none;
+    width: 85%;
+    height: 40%;
+    text-align: center;
+    margin-right: auto;
+    margin-left: auto;
+    padding-top: 11%;
+}
+
+.send-address-text input{
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    border: 1px solid #ffffff;
+    border-radius: 10px;
+    color: #7D7D7D;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 70%;
+    line-height: 19px;
+}
+
+.send-address-button input{
+    width: 36%;
+    height: 60%;
+    text-align: center;
+    border: 1px solid #10CB6C;
+    border-radius: 10px;
+    background: linear-gradient(90deg, #10CB6C 0%, #09A656 95.29%);
+    color: #FFFFFF;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 80%;
+    line-height: 19px;
+}
+
+
+.popup {
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, .5);
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+.popup-content {
+    width: 400px;
+    height: 200px;
+    background-color: #fff;
+    box-sizing: border-box;
+    padding: 10px 30px;
+    color: black;
+}
+
+.top {
+    width: 100%;
+    border-bottom: 1px solid black;
+}
+
+.info {
+    margin-top: 50px;
+}
+.btn {
+    position: absolute;
+}
+
+.btn button{
+    margin-top: 100%;
+    margin-left: 353%;
+}
