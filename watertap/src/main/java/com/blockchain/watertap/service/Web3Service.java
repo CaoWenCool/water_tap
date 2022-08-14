@@ -113,7 +113,7 @@ public class Web3Service {
 
     public void transferReady(String toAddress, Integer transVale) {
         // 检验地址的合法性
-        if(!AddressCheck.isETHVaildAddress(toAddress)){
+        if(AddressCheck.isETHVaildAddress(toAddress)){
             throw new XCloudCommonExceptions.RequestInvalidException("This is not a valid address");
         }
         // 判断是否已经存在
