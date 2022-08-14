@@ -6,6 +6,7 @@ import com.blockchain.watertap.mapper.opensea.model.TransferPO;
 import com.blockchain.watertap.model.request.ListRequest;
 import com.blockchain.watertap.model.response.TransferResponse;
 import com.blockchain.watertap.model.transfer.TransferStateEnum;
+import com.blockchain.watertap.util.AddressCheck;
 import com.blockchain.watertap.util.LocalDateTimeUtil;
 import jep.Jep;
 import jep.JepException;
@@ -111,6 +112,10 @@ public class Web3Service {
     }
 
     public void transferReady(String toAddress, Integer transVale) {
+        // 检验地址的合法性
+        if(!AddressCheck.isETHVaildAddress(toAddress)){
+            throw new XCloudCommonExceptions.RequestInvalidException("This is not a valid address");
+        }
         // 判断是否已经存在
         List<TransferPO> transferPOHis = transferMapper.getByState(TransferStateEnum.READY.getState(), toAddress);
         if (null != transferPOHis && transferPOHis.size() > 0) {

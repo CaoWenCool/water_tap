@@ -20,18 +20,18 @@ public enum CurrencyEnum {
         this.currency = currency;
     }
 
-    public static boolean checkAddress(CurrencyEnum currencyEnum, String address) {
-        switch (currencyEnum) {
-            case USDT_OMNI:
-            case BTC:
-                return AddressCheck.isBTCValidAddress(address);
-            case USDT_ERC20:
-            case ETH:
-                return AddressCheck.isETHValidAddress(address);
-            case USDT_TRC20:
-            case TRX:
-               return AddressCheck.isTRXValidAddress(address);
-        }
-        return true;
-    }
+//    public static boolean checkAddress(CurrencyEnum currencyEnum, String address) {
+//        switch (currencyEnum) {
+//            case USDT_OMNI:
+//            case BTC:
+//                return AddressCheck.isBTCValidAddress(address);
+//            case USDT_ERC20:
+//            case ETH:
+//                return AddressCheck.isETHValidAddress(address);
+//            case USDT_TRC20:
+//            case TRX:
+//               return AddressCheck.isTRXValidAddress(address);
+//        }
+//        return true;
+//    }
 }
