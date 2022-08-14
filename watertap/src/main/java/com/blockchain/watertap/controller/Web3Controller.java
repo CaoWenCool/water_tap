@@ -1,6 +1,5 @@
 package com.blockchain.watertap.controller;
 
-import com.alibaba.fastjson.JSONObject;
 import com.blockchain.watertap.model.ApiResult;
 import com.blockchain.watertap.model.response.TransferResponse;
 import com.blockchain.watertap.service.Web3Service;
