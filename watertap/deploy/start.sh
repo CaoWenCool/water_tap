@@ -1,6 +1,6 @@
 #!/bin/bash
-APPLICATION=../target/
-SPRING_CONFIG=../src
+APPLICATION=../target/watertap-0.0.1-SNAPSHOT.jar
+SPRING_CONFIG=../src/main/resources/application.properties
 MAX_MEMORY=2048m
 
 function checkAapplicationExist() {
@@ -25,10 +25,10 @@ function main() {
     checkJDKEnv
     nohup java -Dspring.config.location=$SPRING_CONFIG \
     -agentlib:jdwp=transport=dt_socket,server=y,suspend=n \
-    -Dfile.encodeing=UTF-8 \
+    -Dfile.encoding=UTF-8 \
     -Xmx$MAX_MEMORY -XX:+UseConcMarkSweepGC -XX:+PrintGCDetails -XX:+PrintGcDateStamps \
     -Xloggc:gc.log -XX:+UseGCLogFileRotation -XX:NumberOfGCLogFiles=10 \
-    -XX:GCLogFileSize=20M ${WITH_TRACE_AGENT} -jar $APPLICATION > test.log 2>&1 &
+    -XX:GCLogFileSize=20M -jar $APPLICATION > test.log 2>&1 &
 }
 
 main
