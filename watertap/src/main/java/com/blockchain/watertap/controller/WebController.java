@@ -24,8 +24,8 @@ public class WebController {
     public ModelAndView index(HttpServletRequest request){
         UserAgent userAgent = UserAgent.parseUserAgentString(request.getHeader("user-agent"));
         String clientType = userAgent.getOperatingSystem().getDeviceType().toString();
+        logger.info("device-type" + clientType);
         if(clientType.equals("MOBILE")){
-            logger.info("device-type" + clientType);
             return new ModelAndView("waterPhone");
         }
         return new ModelAndView("water");
