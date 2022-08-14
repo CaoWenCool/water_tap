@@ -21,16 +21,21 @@
                 success: function (res) {
                     console.log(res);
                     if (res.code != 200) {
-                        alert("send fail!  " + res.msg);
+                        $('#tip_message').text("send fail! " + res.msg);
+                        showPopup();
+                        // alert("send fail!  " + res.msg);
                     } else {
-                        alert("send success!");
+                        $('#tip_message').text("send success! ");
+                        showPopup()
+                        // alert("send success!");
                         window.location.reload();
                     }
                 }, error: function (xhr, errorMessage, e) {
                     console.log(xhr);
                     console.log(errorMessage)
                     console.log(e);
-                    alert(errorMessage)
+                    $('#tip_message').text(errorMessage);
+                    showPopup()
                 }
             })
         }
@@ -44,6 +49,8 @@
                 success: function (res) {
                     console.log(res)
                     if (res.code == 200) {
+                        $('#tip_message').text("Get Success! ");
+                        showPopup()
                         var resData = res.data;
                         for (var i = 0; i < resData.length; i++) {
                             var url = resData[i].url;
@@ -56,16 +63,38 @@
                             }
                         }
                     } else {
-                        alert("Get fail!  " + res.msg);
+                        $('#tip_message').text("Get fail! " + res.msg);
+                        showPopup()
+                        // alert("Get fail!  " + res.msg);
                     }
 
 
                 },
                 error: function (xhr, errorMessage, e) {
-                    alert(errorMessage)
+                    $('#tip_message').text(errorMessage);
+                    showPopup()
                 }
             })
         });
+
+        //给定一个值,使点 确定按钮 为 true,点其他为 false
+        var isDelete = false;
+        //显示弹窗函数，设置display为flex
+        function showPopup() {
+            document.getElementById("popup").style.display = "flex";
+        }
+
+        //关闭弹窗函数，设置display为none，传一个参数，把true和false传进去
+        function hidePopup(x, e) {
+            //处理冒泡，event 的 cancelable 事件返回一个布尔值
+            // 确定按钮有event参数，不会返回undefined（因为取消和其他区域，没传值 默认undefined）
+            if (e != undefined) {
+                e.cancelBubble = true;
+            }
+            document.getElementById("popup").style.display = "none";
+            isDelete = x;
+            console.log(x);
+        }
     </script>
 </head>
 <body>
@@ -104,6 +133,21 @@
             </tbody>
         </table>
     </div>
+</div>
+
+<!--给出弹窗的内容-->
+<!--弹窗点击除 确定按钮 以外的 取消和其他区域 时弹窗都会消失且输出false，点击 确定按钮 时为true-->
+<div class="popup" id="popup" onclick="hidePopup(false)">
+    <div class="popup-content">
+        <div class="top">
+            <p id="tip_message">提示信息</p>
+        </div>
+        <div class="btn">
+            <!--因为两个按钮在popup这个大框里，点击确定和取消就会同时点击父元素，会产生事件冒泡（即点击确定，会同时出现true和false）-->
+            <button type="button" onclick="hidePopup(true,event)">determine</button>
+        </div>
+    </div>
+</div>
 </div>
 
 </body>
