@@ -26,7 +26,7 @@ function main() {
     nohup java -Dspring.config.location=$SPRING_CONFIG \
     -agentlib:jdwp=transport=dt_socket,server=y,suspend=n \
     -Dfile.encoding=UTF-8 \
-    -Xmx$MAX_MEMORY -XX:+UseConcMarkSweepGC -XX:+PrintGCDetails -XX:+PrintGcDateStamps \
+    -Xmx$MAX_MEMORY -XX:+UseConcMarkSweepGC -XX:+PrintGCDetails \
     -Xloggc:gc.log -XX:+UseGCLogFileRotation -XX:NumberOfGCLogFiles=10 \
     -XX:GCLogFileSize=20M -jar $APPLICATION > test.log 2>&1 &
 }
