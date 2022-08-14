@@ -21,12 +21,10 @@
                 success: function (res) {
                     console.log(res);
                     if (res.code != 200) {
-                        $('#tip_message').text("send fail! " + res.msg);
-                        showPopup();
+                        showPopup("send fail! " + res.msg);
                         // alert("send fail!  " + res.msg);
                     } else {
-                        $('#tip_message').text("send success! ");
-                        showPopup()
+                        showPopup("Send Success!")
                         // alert("send success!");
                         window.location.reload();
                     }
@@ -34,8 +32,7 @@
                     console.log(xhr);
                     console.log(errorMessage)
                     console.log(e);
-                    $('#tip_message').text(errorMessage);
-                    showPopup()
+                    showPopup(errorMessage)
                 }
             })
         }
@@ -49,8 +46,6 @@
                 success: function (res) {
                     console.log(res)
                     if (res.code == 200) {
-                        $('#tip_message').text("Get Success! ");
-                        showPopup()
                         var resData = res.data;
                         for (var i = 0; i < resData.length; i++) {
                             var url = resData[i].url;
@@ -63,16 +58,13 @@
                             }
                         }
                     } else {
-                        $('#tip_message').text("Get fail! " + res.msg);
-                        showPopup()
-                        // alert("Get fail!  " + res.msg);
+                        showPopup("Get fail! " + res.msg)
                     }
 
 
                 },
                 error: function (xhr, errorMessage, e) {
-                    $('#tip_message').text(errorMessage);
-                    showPopup()
+                    showPopup(errorMessage)
                 }
             })
         });
@@ -80,7 +72,8 @@
         //给定一个值,使点 确定按钮 为 true,点其他为 false
         var isDelete = false;
         //显示弹窗函数，设置display为flex
-        function showPopup() {
+        function showPopup(msg) {
+            $('#tip_message').text(msg);
             document.getElementById("popup").style.display = "flex";
         }
 
