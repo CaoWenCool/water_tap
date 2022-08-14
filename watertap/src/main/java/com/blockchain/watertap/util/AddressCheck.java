@@ -1,9 +1,6 @@
 package com.blockchain.watertap.util;
 
 import org.apache.commons.lang3.StringUtils;
-import org.bitcoinj.core.Address;
-import org.bitcoinj.core.NetworkParameters;
-import org.bitcoinj.params.MainNetParams;
 import org.web3j.utils.Numeric;
 
 public class AddressCheck {
