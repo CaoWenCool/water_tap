@@ -29,7 +29,7 @@ public class LocalDateTimeUtil {
                     sb.append(MINUTES_AGO);
                 }else{
                     Long millis = duration.toMillis();
-                    sb.append(millis);
+                    sb.append(millis / 1000);
                     sb.append(SECONDS_AGO);
                 }
             }

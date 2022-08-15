@@ -51,7 +51,7 @@ body {
 
 .history {
     width: 84%;
-    height: 35%;
+    height: 45%;
     background-size: 100% 100%;
     background-repeat: no-repeat;
     background-image: url(../image/history.jpg);
@@ -68,6 +68,32 @@ body {
     padding-top: 2%;
 }
 
+.download-button {
+    outline-style: none;
+    width: 70%;
+    height: 40%;
+    text-align: center;
+    margin-right: -100%;
+    margin-left: auto;
+    padding-top: 2%;
+    text-align: right;
+}
+
+.download-button input{
+    width: 130%;
+    height: 100%;
+    text-align: center;
+    border: 1px solid #10CB6C;
+    border-radius: 10px;
+    background: linear-gradient(90deg, #ED824E 0.01%, #EA4A5C 101.09%);
+    color: #FFFFFF;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 50%;
+    line-height: 19px;
+}
+
 .history-table table{
     width: 100%;
     height: 100%;
@@ -76,12 +102,12 @@ body {
 
 .history-table table thead{
     width: 100%;
-    height: 40%;
+    height: 20%;
 }
 
 .history-table table tbody{
     width: 100%;
-    height: 60%;
+    height: 80%;
 }
 
 .history-table table thead tr{
@@ -93,7 +119,7 @@ body {
 
 .history-table table tbody tr{
     width: 100%;
-    height: 45%;
+    height: 20%;
     background: #FFFFFF;
     border-width: 0px 1px 1px 1px;
     border-style: solid;
@@ -123,7 +149,7 @@ body {
     color: #FFFFFF;
 }
 
-.history-table table thead tr th:nth-child(2){
+.history-table table thead tr th:nth-child(3){
     width: 30%;
     height: 100%;
     font-family: 'Inter';
@@ -139,7 +165,7 @@ body {
     font-family: 'Inter';
     font-style: normal;
     font-weight: 400;
-    font-size: 80%;
+    font-size: 50%;
     color: #000000;
     white-space: pre-line;
     word-break: break-all;
@@ -151,16 +177,16 @@ body {
     font-family: 'Inter';
     font-style: normal;
     font-weight: 400;
-    font-size: 80%;
+    font-size: 50%;
     color: #000000;
 }
 
-.history-table table tbody tr th:nth-child(2){
+.history-table table tbody tr th:nth-child(3){
     width: 30%;
     font-family: 'Inter';
     font-style: normal;
     font-weight: 400;
-    font-size: 80%;
+    font-size: 50%;
     color: #000000;
 }
 

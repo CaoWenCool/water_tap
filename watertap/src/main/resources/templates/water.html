@@ -94,6 +94,9 @@
 </head>
 <body>
 <div class="logo">
+    <div class="download-button">
+        <input type="button" value="Download" onclick="transfer()">
+    </div>
 </div>
 <div class="metaunva">
 </div>
@@ -118,31 +121,31 @@
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <th id="toAddress-0"><a id="toAddress-a-0" href="#">.....</a></th>
-                <th id="number-0">0</th>
-                <th id="timeAgo-0">0 minutes ago</th>
-            </tr>
-            <tr>
-                <th id="toAddress-1"><a id="toAddress-a-1" href="#">.....</a></th>
-                <th id="number-1">0</th>
-                <th id="timeAgo-1">0 minutes ago</th>
-            </tr>
-            <tr>
-                <th id="toAddress-2"><a id="toAddress-a-2" href="#">.....</a></th>
-                <th id="number-2">0</th>
-                <th id="timeAgo-2">0 minutes ago</th>
-            </tr>
-            <tr>
-                <th id="toAddress-3"><a id="toAddress-a-3" href="#">.....</a></th>
-                <th id="number-3">0</th>
-                <th id="timeAgo-3">0 minutes ago</th>
-            </tr>
-            <tr>
-                <th id="toAddress-4"><a id="toAddress-a-4" href="#">.....</a></th>
-                <th id="number-4">0</th>
-                <th id="timeAgo-4">0 minutes ago</th>
-            </tr>
+                <tr>
+                    <th id="toAddress-0"><a id="toAddress-a-0" href="#">.....</a></th>
+                    <th id="number-0">0</th>
+                    <th id="timeAgo-0">0 minutes ago</th>
+                </tr>
+                <tr>
+                    <th id="toAddress-1"><a id="toAddress-a-1" href="#">.....</a></th>
+                    <th id="number-1">0</th>
+                    <th id="timeAgo-1">0 minutes ago</th>
+                </tr>
+                <tr>
+                    <th id="toAddress-2"><a id="toAddress-a-2" href="#">.....</a></th>
+                    <th id="number-2">0</th>
+                    <th id="timeAgo-2">0 minutes ago</th>
+                </tr>
+                <tr>
+                    <th id="toAddress-3"><a id="toAddress-a-3" href="#">.....</a></th>
+                    <th id="number-3">0</th>
+                    <th id="timeAgo-3">0 minutes ago</th>
+                </tr>
+                <tr>
+                    <th id="toAddress-4"><a id="toAddress-a-4" href="#">.....</a></th>
+                    <th id="number-4">0</th>
+                    <th id="timeAgo-4">0 minutes ago</th>
+                </tr>
             </tbody>
         </table>
     </div>
@@ -153,7 +156,7 @@
 <div class="popup" id="popup" onclick="hidePopup(false)">
     <div class="popup-content">
         <div class="top">
-            <p id="tip_message">提示信息</p>
+            <p id="tip_message">Warning Message</p>
         </div>
         <div class="btn">
             <!--因为两个按钮在popup这个大框里，点击确定和取消就会同时点击父元素，会产生事件冒泡（即点击确定，会同时出现true和false）-->

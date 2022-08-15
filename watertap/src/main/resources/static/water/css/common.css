@@ -16,6 +16,32 @@ body {
     margin-left: auto;
 }
 
+.download-button {
+    outline-style: none;
+    width: 87%;
+    height: 45%;
+    text-align: center;
+    margin-right: -420%;
+    margin-left: auto;
+    padding-top: 2%;
+    text-align: right;
+}
+
+.download-button input{
+    width: 130%;
+    height: 100%;
+    text-align: center;
+    border: 1px solid #10CB6C;
+    border-radius: 10px;
+    background: linear-gradient(90deg, #ED824E 0.01%, #EA4A5C 101.09%);
+    color: #FFFFFF;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+}
+
 .metaunva {
     width: 27.3%;
     height: 4.9%;

@@ -51,6 +51,8 @@
                             var url = resData[i].url;
                             var toAddress =resData[i].toAddress;
                             var time = resData[i].time;
+                            var number = resData[i].number;
+                            $("#number-" + i).text(number);
                             $("#toAddress-a-" + i).text(toAddress);
                             $("#timeAgo-" + i).text(time);
                             if(null != url){
@@ -92,6 +94,9 @@
 </head>
 <body>
 <div class="logo">
+    <div class="download-button">
+        <input type="button" value="Download" onclick="transfer()">
+    </div>
 </div>
 <div class="metaunva">
 </div>
@@ -111,18 +116,36 @@
             <thead>
             <tr>
                 <th>Your Transactions</th>
+                <th>Number</th>
                 <th>Time</th>
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <th id="toAddress-0"><a id="toAddress-a-0" href="#">.....</a></th>
-                <th id="timeAgo-0">0 minutes ago</th>
-            </tr>
-            <tr>
-                <th id="toAddress-1"><a id="toAddress-a-1" href="#">.....</a></th>
-                <th id="timeAgo-1">0 minutes ago</th>
-            </tr>
+                <tr>
+                    <th id="toAddress-0"><a id="toAddress-a-0" href="#">.....</a></th>
+                    <th id="number-0">0</th>
+                    <th id="timeAgo-0">0 minutes ago</th>
+                </tr>
+                <tr>
+                    <th id="toAddress-1"><a id="toAddress-a-1" href="#">.....</a></th>
+                    <th id="number-1">0</th>
+                    <th id="timeAgo-1">0 minutes ago</th>
+                </tr>
+                <tr>
+                    <th id="toAddress-2"><a id="toAddress-a-2" href="#">.....</a></th>
+                    <th id="number-2">0</th>
+                    <th id="timeAgo-2">0 minutes ago</th>
+                </tr>
+                <tr>
+                    <th id="toAddress-3"><a id="toAddress-a-3" href="#">.....</a></th>
+                    <th id="number-3">0</th>
+                    <th id="timeAgo-3">0 minutes ago</th>
+                </tr>
+                <tr>
+                    <th id="toAddress-4"><a id="toAddress-a-4" href="#">.....</a></th>
+                    <th id="number-4">0</th>
+                    <th id="timeAgo-4">0 minutes ago</th>
+                </tr>
             </tbody>
         </table>
     </div>
