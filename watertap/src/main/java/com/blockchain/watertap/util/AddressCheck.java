@@ -3,6 +3,8 @@ package com.blockchain.watertap.util;
 import org.apache.commons.lang3.StringUtils;
 import org.web3j.utils.Numeric;
 
+import java.util.Random;
+
 public class AddressCheck {
 
 
@@ -29,6 +31,12 @@ public class AddressCheck {
         System.out.println(isETHVaildAddress("1111"));
         System.out.println(isETHVaildAddress("Ox1123"));
         System.out.println(isETHVaildAddress("0x3086a6d10161960Df5D9203110f23754b49fFEd8"));
+        Random rand = new Random();
+
+        for(int i=0;i<100;i++){
+            Integer transfer = 1 + rand.nextInt(19);
+            System.out.println(transfer);
+        }
     }
 
 

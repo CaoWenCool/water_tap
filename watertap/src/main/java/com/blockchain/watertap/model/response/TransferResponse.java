@@ -8,6 +8,8 @@ public class TransferResponse {
 
     private String toAddress;
 
+    private Integer number;
+
     public String getUrl() {
         return url;
     }
@@ -30,5 +32,13 @@ public class TransferResponse {
 
     public void setToAddress(String toAddress) {
         this.toAddress = toAddress;
+    }
+
+    public Integer getNumber() {
+        return number;
+    }
+
+    public void setNumber(Integer number) {
+        this.number = number;
     }
 }

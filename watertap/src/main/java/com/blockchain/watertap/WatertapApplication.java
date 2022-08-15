@@ -13,9 +13,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @EnableAsync
 @MapperScan({"com.blockchain.watertap.mapper.*.mapper"})
 public class WatertapApplication {
-
     public static void main(String[] args) {
         SpringApplication.run(WatertapApplication.class, args);
     }
-
 }

@@ -53,6 +53,8 @@ public class Web3Service {
 
     private static final String SEND_FAIL = "Send Fail";
 
+    private static final Integer START_TRANSFER = 1;
+
     private ThreadLocal<Jep> tlInterp = new ThreadLocal<>();
 
     private Jep getPythonInterp() {
@@ -84,7 +86,7 @@ public class Web3Service {
     }
 
     public List<TransferResponse> transferHis() {
-        ListRequest listRequest = new ListRequest("desc", "id", 1, 2);
+        ListRequest listRequest = new ListRequest("desc", "id", 1, 5);
         List<TransferPO> transferPOList = transferMapper.listByPage(listRequest);
         List<TransferResponse> transferResponses = new ArrayList<>();
         if (null == transferPOList || transferPOList.size() == 0) {
@@ -93,6 +95,7 @@ public class Web3Service {
         for (TransferPO eachTransfer : transferPOList) {
             TransferResponse transferResponse = new TransferResponse();
             transferResponse.setToAddress(eachTransfer.getToAddress());
+            transferResponse.setNumber(eachTransfer.getTransferVal());
             if (TransferStateEnum.READY.getState().equals(eachTransfer.getState())) {
                 transferResponse.setTime(PENDING);
             } else if(TransferStateEnum.SUCCESS.getState().equals(eachTransfer.getState())){
@@ -127,10 +130,12 @@ public class Web3Service {
         if (null != transferPOList && transferPOList.size() > 0) {
             throw new XCloudCommonExceptions.RequestInvalidException("every address only get once at the same day!");
         }
+        Random rand = new Random();
+        Integer transfer = START_TRANSFER + rand.nextInt(transVale);
         // 插入数据库
         TransferPO transferPO = new TransferPO();
         transferPO.setToAddress(toAddress);
-        transferPO.setTransferVal(transVale);
+        transferPO.setTransferVal(transfer);
         transferPO.setNetwork(blockChainBrowser);
         transferPO.setState(TransferStateEnum.READY.getState());
         transferPO.setUpdateTime(LocalDateTime.now());

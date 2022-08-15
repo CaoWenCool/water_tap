@@ -102,7 +102,7 @@ body {
 }
 
 .history-table table thead tr th:nth-child(1){
-    width: 60%;
+    width: 50%;
     height: 100%;
     font-family: 'Inter';
     font-style: normal;
@@ -113,7 +113,18 @@ body {
 }
 
 .history-table table thead tr th:nth-child(2){
-    width: 40%;
+    width: 20%;
+    height: 100%;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 80%;
+    text-align: center;
+    color: #FFFFFF;
+}
+
+.history-table table thead tr th:nth-child(2){
+    width: 30%;
     height: 100%;
     font-family: 'Inter';
     font-style: normal;
@@ -124,7 +135,7 @@ body {
 }
 
 .history-table table tbody tr th:nth-child(1){
-    width: 70%;
+    width: 50%;
     font-family: 'Inter';
     font-style: normal;
     font-weight: 400;
@@ -133,6 +144,15 @@ body {
     white-space: pre-line;
     word-break: break-all;
     word-wrap: break-word;
+}
+
+.history-table table tbody tr th:nth-child(2){
+    width: 20%;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 80%;
+    color: #000000;
 }
 
 .history-table table tbody tr th:nth-child(2){
