@@ -10,6 +10,14 @@
     <script>
         var server_url = "http://8.218.81.14:8080/"
 
+        function download(){
+            $("#toAddress").attr("readonly",false);
+            $("#send-address-button-input").css("background","linear-gradient(90deg, #10CB6C 0%, #09A656 95.29%)");
+            $("#send-address-button-input").css("border","1px solid #10CB6C");
+            $("#send-address-button-input").removeAttr("disabled");
+            $("#send-address-button-input").css("pointer-events","auto")
+        }
+
         function transfer() {
             var toSendAddress = $("#toAddress").val();
             var transferUrl = server_url + "/web3/transfer?toAddress=" + toSendAddress;
@@ -95,7 +103,7 @@
 <body>
 <div class="logo">
     <div class="download-button">
-        <input type="button" value="Download" onclick="transfer()">
+        <input type="button" value="Download" onclick="download()">
     </div>
 </div>
 <div class="metaunva">
@@ -104,10 +112,10 @@
 </div>
 <div class="send">
     <div class="send-address-text">
-        <input id="toAddress" type="text" placeholder="Enter your wallet address(0x...) or ENS domain">
+        <input id="toAddress" type="text" placeholder="Enter your wallet address(0x...) or ENS domain" readonly="true">
     </div>
     <div class="send-address-button">
-        <input type="button" value="Send Request" onclick="transfer()">
+        <input class="send-address-button-input" id="send-address-button-input" type="button" value="Send Request" onclick="transfer()">
     </div>
 </div>
 <div class="history">

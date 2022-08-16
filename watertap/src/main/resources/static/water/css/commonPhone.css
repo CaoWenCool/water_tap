@@ -225,19 +225,20 @@ body {
     line-height: 19px;
 }
 
-.send-address-button input{
+.send-address-button-input{
     width: 36%;
     height: 60%;
     text-align: center;
-    border: 1px solid #10CB6C;
+    border: 1px solid #808080;
     border-radius: 10px;
-    background: linear-gradient(90deg, #10CB6C 0%, #09A656 95.29%);
+    background: linear-gradient(90deg, #808080 0%, #808080 95.29%);
     color: #FFFFFF;
     font-family: 'Inter';
     font-style: normal;
     font-weight: 400;
     font-size: 80%;
     line-height: 19px;
+    pointer-events: none;
 }
 
 
