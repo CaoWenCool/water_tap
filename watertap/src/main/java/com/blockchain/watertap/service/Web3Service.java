@@ -67,8 +67,8 @@ public class Web3Service {
                 byte[] b = new byte[length];
                 inputStream.read(b);
                 inputStream.close();
-                ;
                 String pythonData = new String(b);
+                logger.error(pythonData);
                 interp.exec(pythonData);
                 tlInterp.set(interp);
             } catch (Exception e) {
