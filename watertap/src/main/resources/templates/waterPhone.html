@@ -11,11 +11,28 @@
         var server_url = "http://47.254.174.98:8080/"
 
         function download(){
-            $("#toAddress").attr("readonly",false);
-            $("#send-address-button-input").css("background","linear-gradient(90deg, #10CB6C 0%, #09A656 95.29%)");
-            $("#send-address-button-input").css("border","1px solid #10CB6C");
-            $("#send-address-button-input").removeAttr("disabled");
-            $("#send-address-button-input").css("pointer-events","auto")
+            var downloadUrl =  server_url + "/web3/download/url";
+            $.ajax({
+                url: downloadUrl,
+                type: 'get',
+                dataType: 'json',
+                contentType: "application/json;charset=UTF-8",
+                success: function (res) {
+                    console.log(res);
+                    if (res.code != 200) {
+                        showPopup("send fail! " + res.msg);
+                        // alert("send fail!  " + res.msg);
+                    } else {
+                        var resData = res.data;
+                        window.location.href=resData
+                    }
+                }, error: function (xhr, errorMessage, e) {
+                    console.log(xhr);
+                    console.log(errorMessage)
+                    console.log(e);
+                    showPopup(errorMessage)
+                }
+            })
         }
 
         function transfer() {
@@ -54,7 +71,15 @@
                 success: function (res) {
                     console.log(res)
                     if (res.code == 200) {
-                        var resData = res.data;
+                        var resData = res.data.transferResponses;
+                        var downloadTag = res.data.clickDownload;
+                        if(downloadTag){
+                            $("#toAddress").attr("readonly",false);
+                            $("#send-address-button-input").css("background","linear-gradient(90deg, #10CB6C 0%, #09A656 95.29%)");
+                            $("#send-address-button-input").css("border","1px solid #10CB6C");
+                            $("#send-address-button-input").removeAttr("disabled");
+                            $("#send-address-button-input").css("pointer-events","auto")
+                        }
                         for (var i = 0; i < resData.length; i++) {
                             var url = resData[i].url;
                             var toAddress =resData[i].toAddress;
@@ -130,27 +155,37 @@
             </thead>
             <tbody>
                 <tr>
-                    <th id="toAddress-0"><a id="toAddress-a-0" href="#">.....</a></th>
+                    <th id="toAddress-0">
+                        <a id="toAddress-a-0" href="#">.....</a>
+                    </th>
                     <th id="number-0">0</th>
                     <th id="timeAgo-0">0 minutes ago</th>
                 </tr>
                 <tr>
-                    <th id="toAddress-1"><a id="toAddress-a-1" href="#">.....</a></th>
+                    <th id="toAddress-1">
+                        <a id="toAddress-a-1" href="#">.....</a>
+                    </th>
                     <th id="number-1">0</th>
                     <th id="timeAgo-1">0 minutes ago</th>
                 </tr>
                 <tr>
-                    <th id="toAddress-2"><a id="toAddress-a-2" href="#">.....</a></th>
+                    <th id="toAddress-2">
+                        <a id="toAddress-a-2" href="#">.....</a>
+                    </th>
                     <th id="number-2">0</th>
                     <th id="timeAgo-2">0 minutes ago</th>
                 </tr>
                 <tr>
-                    <th id="toAddress-3"><a id="toAddress-a-3" href="#">.....</a></th>
+                    <th id="toAddress-3">
+                        <a id="toAddress-a-3" href="#">.....</a>
+                    </th>
                     <th id="number-3">0</th>
                     <th id="timeAgo-3">0 minutes ago</th>
                 </tr>
                 <tr>
-                    <th id="toAddress-4"><a id="toAddress-a-4" href="#">.....</a></th>
+                    <th id="toAddress-4">
+                        <a id="toAddress-a-4" href="#">.....</a>
+                    </th>
                     <th id="number-4">0</th>
                     <th id="timeAgo-4">0 minutes ago</th>
                 </tr>
