@@ -62,7 +62,7 @@ public class Web3Service {
             Jep interp = null;
             try {
                 interp = new SharedInterpreter();
-                InputStream inputStream = getClass().getClassLoader().getResourceAsStream(pythonPath);
+                InputStream inputStream = getClass().getClassLoader().getResourceAsStream(transferPath);
                 int length = inputStream.available();
                 byte[] b = new byte[length];
                 inputStream.read(b);
@@ -169,17 +169,17 @@ public class Web3Service {
         Integer state = TransferStateEnum.FAIL.getState();
         String txHash = null;
         try {
-            jep.set("a",1);
-            jep.set("b",2);
-            Object ret1 = jep.getValue("add_num(a, b)");
-            logger.info("11111111111111111111");
-            logger.info(ret1.toString());
-//            jep.set("network", network);
-//            jep.set("token_address", tokenAddress);
-//            jep.set("abi", abi);
-//            jep.set("private_key", privateKey);
-//            jep.set("to_address", transferPO.getToAddress());
-//            jep.set("trans_value", transferPO.getTransferVal());
+//            jep.set("a",1);
+//            jep.set("b",2);
+//            Object ret1 = jep.getValue("add_num(a, b)");
+//            logger.info("11111111111111111111");
+//            logger.info(ret1.toString());
+            jep.set("network", network);
+            jep.set("token_address", tokenAddress);
+            jep.set("abi", abi);
+            jep.set("private_key", privateKey);
+            jep.set("to_address", transferPO.getToAddress());
+            jep.set("trans_value", transferPO.getTransferVal());
             Object ret = jep.getValue("transfer(network, token_address, abi, private_key, to_address, trans_value)");
             logger.info("transfer address:" + transferPO.getToAddress() + ", transfer value:" + transferPO.getTransferVal() + ",trasferHash:" + ret);
             // 进行更新
