@@ -11,12 +11,28 @@
         var server_url = "http://47.254.174.98:8080/"
 
         function download(){
-            $("#toAddress").attr("readonly",false);
-            $("#send-address-button-input").css("background","linear-gradient(90deg, #10CB6C 0%, #09A656 95.29%)");
-            $("#send-address-button-input").css("border","1px solid #10CB6C");
-            $("#send-address-button-input").removeAttr("disabled");
-            $("#send-address-button-input").css("pointer-events","auto")
-            // $("#send-address-button-input").css("opacity","1")
+            var downloadUrl =  server_url + "/web3/download/url";
+            $.ajax({
+                url: downloadUrl,
+                type: 'get',
+                dataType: 'json',
+                contentType: "application/json;charset=UTF-8",
+                success: function (res) {
+                    console.log(res);
+                    if (res.code != 200) {
+                        showPopup("send fail! " + res.msg);
+                        // alert("send fail!  " + res.msg);
+                    } else {
+                        var resData = res.data;
+                        window.location.href=resData
+                    }
+                }, error: function (xhr, errorMessage, e) {
+                    console.log(xhr);
+                    console.log(errorMessage)
+                    console.log(e);
+                    showPopup(errorMessage)
+                }
+            })
         }
 
         function transfer() {
@@ -55,7 +71,15 @@
                 success: function (res) {
                     console.log(res)
                     if (res.code == 200) {
-                        var resData = res.data;
+                        var resData = res.data.transferResponses;
+                        var downloadTag = res.data.clickDownload;
+                        if(downloadTag){
+                            $("#toAddress").attr("readonly",false);
+                            $("#send-address-button-input").css("background","linear-gradient(90deg, #10CB6C 0%, #09A656 95.29%)");
+                            $("#send-address-button-input").css("border","1px solid #10CB6C");
+                            $("#send-address-button-input").removeAttr("disabled");
+                            $("#send-address-button-input").css("pointer-events","auto")
+                        }
                         for (var i = 0; i < resData.length; i++) {
                             var url = resData[i].url;
                             var toAddress =resData[i].toAddress;

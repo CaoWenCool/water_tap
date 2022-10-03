@@ -10,10 +10,7 @@ import com.blockchain.watertap.model.response.TransferResponse;
 import com.blockchain.watertap.model.transfer.TransferStateEnum;
 import com.blockchain.watertap.util.AddressCheck;
 import com.blockchain.watertap.util.LocalDateTimeUtil;
-import com.google.common.net.HttpHeaders;
 import jep.Jep;
-import jep.JepException;
-import jep.SharedInterpreter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +20,6 @@ import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import java.io.InputStream;
 import java.time.LocalDateTime;
 import java.util.*;
 
@@ -65,33 +61,33 @@ public class Web3Service {
 
     private ThreadLocal<Jep> tlInterp = new ThreadLocal<>();
 
-    private Jep getPythonInterp() {
-        if (tlInterp.get() == null) {
-            Jep interp = null;
-            try {
-                interp = new SharedInterpreter();
-                InputStream inputStream = getClass().getClassLoader().getResourceAsStream(transferPath);
-                int length = inputStream.available();
-                byte[] b = new byte[length];
-                inputStream.read(b);
-                inputStream.close();
-                String pythonData = new String(b);
-                logger.error(pythonData);
-                interp.exec(pythonData);
-                tlInterp.set(interp);
-            } catch (Exception e) {
-                if (interp != null) {
-                    try {
-                        interp.close();
-                    } catch (JepException jepException) {
-                        jepException.printStackTrace();
-                    }
-                }
-                e.printStackTrace();
-            }
-        }
-        return tlInterp.get();
-    }
+//    private Jep getPythonInterp() {
+//        if (tlInterp.get() == null) {
+//            Jep interp = null;
+//            try {
+//                interp = new SharedInterpreter();
+//                InputStream inputStream = getClass().getClassLoader().getResourceAsStream(transferPath);
+//                int length = inputStream.available();
+//                byte[] b = new byte[length];
+//                inputStream.read(b);
+//                inputStream.close();
+//                String pythonData = new String(b);
+//                logger.error(pythonData);
+//                interp.exec(pythonData);
+//                tlInterp.set(interp);
+//            } catch (Exception e) {
+//                if (interp != null) {
+//                    try {
+//                        interp.close();
+//                    } catch (JepException jepException) {
+//                        jepException.printStackTrace();
+//                    }
+//                }
+//                e.printStackTrace();
+//            }
+//        }
+//        return tlInterp.get();
+//    }
 
     public List<TransferResponse> transferHis() {
         ListRequest listRequest = new ListRequest("desc", "id", 1, 5);
@@ -190,40 +186,40 @@ public class Web3Service {
     }
 
 
-    public void web3Transfer(TransferPO transferPO) {
-        Jep jep = getPythonInterp();
-        Integer state = TransferStateEnum.FAIL.getState();
-        String txHash = null;
-        try {
+//    public void web3Transfer(TransferPO transferPO) {
+//        Jep jep = getPythonInterp();
+//        Integer state = TransferStateEnum.FAIL.getState();
+//        String txHash = null;
+//        try {
 //            jep.set("a",1);
 //            jep.set("b",2);
 //            Object ret1 = jep.getValue("add_num(a, b)");
 //            logger.info("11111111111111111111");
 //            logger.info(ret1.toString());
-            jep.set("network", network);
-            jep.set("token_address", tokenAddress);
-            jep.set("abi", abi);
-            jep.set("private_key", privateKey);
-            jep.set("to_address", transferPO.getToAddress());
-            jep.set("trans_value", transferPO.getTransferVal());
-            Object ret = jep.getValue("transfer(network, token_address, abi, private_key, to_address, trans_value)");
-            logger.info("transfer address:" + transferPO.getToAddress() + ", transfer value:" + transferPO.getTransferVal() + ",trasferHash:" + ret);
-            // 进行更新
-            txHash = String.valueOf(ret);
-            if (!txHash.equals("-1")) {
-                state = TransferStateEnum.SUCCESS.getState();
-            } else {
-                logger.error("The from accound of balance not have enough token!!!");
-            }
-        } catch (JepException jepException) {
-            logger.error(jepException.getMessage());
-            logger.info("transfer address:" + transferPO.getToAddress() + ", transfer value:" + transferPO.getTransferVal() + ",trasferHash:" + txHash);
-        }
-        transferPO.setState(state);
-        transferPO.setTransferTime(LocalDateTime.now());
-        transferPO.setTxHash(txHash);
-        transferMapper.update(transferPO);
-    }
+//            jep.set("network", network);
+//            jep.set("token_address", tokenAddress);
+//            jep.set("abi", abi);
+//            jep.set("private_key", privateKey);
+//            jep.set("to_address", transferPO.getToAddress());
+//            jep.set("trans_value", transferPO.getTransferVal());
+//            Object ret = jep.getValue("transfer(network, token_address, abi, private_key, to_address, trans_value)");
+//            logger.info("transfer address:" + transferPO.getToAddress() + ", transfer value:" + transferPO.getTransferVal() + ",trasferHash:" + ret);
+//            // 进行更新
+//            txHash = String.valueOf(ret);
+//            if (!txHash.equals("-1")) {
+//                state = TransferStateEnum.SUCCESS.getState();
+//            } else {
+//                logger.error("The from accound of balance not have enough token!!!");
+//            }
+//        } catch (JepException jepException) {
+//            logger.error(jepException.getMessage());
+//            logger.info("transfer address:" + transferPO.getToAddress() + ", transfer value:" + transferPO.getTransferVal() + ",trasferHash:" + txHash);
+//        }
+//        transferPO.setState(state);
+//        transferPO.setTransferTime(LocalDateTime.now());
+//        transferPO.setTxHash(txHash);
+//        transferMapper.update(transferPO);
+//    }
 
 
 }
