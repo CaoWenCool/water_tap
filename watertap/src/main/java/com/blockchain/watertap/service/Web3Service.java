@@ -180,7 +180,7 @@ public class Web3Service {
         transferRequest.setToken_address(tokenAddress);
         transferRequest.setTrans_value(transferPO.getTransferVal());
         transferRequest.setTo_address(transferPO.getToAddress());
-        ResponseEntity<JSONObject> responseEntity = restTemplate.postForEntity("http://127.0.0.1:9090/base/init/image", JSONObject.toJSON(transferRequest), JSONObject.class);
+        ResponseEntity<JSONObject> responseEntity = restTemplate.postForEntity("http://127.0.0.1:9090/transfer", JSONObject.toJSON(transferRequest), JSONObject.class);
         JSONObject resJson = responseEntity.getBody();
         logger.error(resJson.toJSONString());
         transferPO.setState(TransferStateEnum.SUCCESS.getState());
