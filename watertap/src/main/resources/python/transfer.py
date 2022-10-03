@@ -1,4 +1,3 @@
-import json
 
 from web3 import Web3, HTTPProvider
 from eth_account import Account
