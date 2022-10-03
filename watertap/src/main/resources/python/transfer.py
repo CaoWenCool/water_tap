@@ -39,5 +39,6 @@ def transfer(network, token_address, abi, private_key, to_address, trans_value):
 #         {'gasPrice': gas_price, 'gas': gas, 'nonce': nonce})
 #     txn_signed_usdt = w3.eth.account.signTransaction(transaction_contract,private_key)
 #     txn_hash = w3.eth.sendRawTransaction(txn_signed_usdt.rawTransaction)
-#     txn_hash = Web3.toHex(txn_hash)
+#     txn_hash = Web3.toHex(txn_hash)、
+    print(to_address)
     return token_address
