@@ -62,7 +62,7 @@ public class Web3Service {
             Jep interp = null;
             try {
                 interp = new SharedInterpreter();
-                InputStream inputStream = getClass().getClassLoader().getResourceAsStream(transferPath);
+                InputStream inputStream = getClass().getClassLoader().getResourceAsStream(pythonPath);
                 int length = inputStream.available();
                 byte[] b = new byte[length];
                 inputStream.read(b);
