@@ -1,23 +1,29 @@
 #!/usr/bin/env python3
 
 import json
-
+from flask import Flask, request, jsonify
+from flask import Flask
 from web3 import Web3, HTTPProvider
 from eth_account import Account
 
-def transfer(network, token_address, abi, private_key, to_address, trans_value):
-    """
-    Web3 进行转账
-    :param network: 网络
-    :param token_address: 智能合约的地址
-    :param abi: 智能合约得ABI
-    :param private_key: 私钥
-    :param to_address: 转账地址
-    :param trans_value: 交易金额
-    :return:
-    """
+app = Flask(__name__)
+app.debug = True
+
+
+@app.route('/transfer', methods=['post'])
+def post_http():
+    params = request.data.decode('utf-8')
+    # 获取到POST过来的数据，因为我这里传过来的数据需要转换一下编码。根据晶具体情况而定
+    params = json.loads(params)
+    network = params["network"]
+    token_address = params["token_address"]
+    abi = params["abi"]
+    private_key = params["private_key"]
+    to_address = params["to_address"]
+    trans_value = params["trans_value"]
+
     w3 = Web3(HTTPProvider(network))  # 网络地址
-    token_contract = Web3.toChecksumAddress(token_address)  #合约地址
+    token_contract = Web3.toChecksumAddress(token_address)  # 合约地址
     abi_json = json.loads(abi)
     token_contract = w3.eth.contract(address=token_contract, abi=abi_json)
     print(w3.isConnected())
@@ -37,9 +43,18 @@ def transfer(network, token_address, abi, private_key, to_address, trans_value):
     gas = token_contract.functions.transfer(to_address, int(value)).estimateGas({'from': from_address})
     transaction_contract = token_contract.functions.transfer(to_address, int(value)).buildTransaction(
         {'gasPrice': gas_price, 'gas': gas, 'nonce': nonce})
-    txn_signed_usdt = w3.eth.account.signTransaction(transaction_contract,private_key)
+    txn_signed_usdt = w3.eth.account.signTransaction(transaction_contract, private_key)
     txn_hash = w3.eth.sendRawTransaction(txn_signed_usdt.rawTransaction)
     txn_hash = Web3.toHex(txn_hash)
-    return txn_hash
+
+    result = {
+        "txn_hash": txn_hash
+    }
+    print(result)
+    # 把区获取到的数据转为JSON格式。
+    return jsonify(result)
 
 
+if __name__ == '__main__':
+    app.run(host='127.0.0.1', port=9090)
+    # 这里指定了地址和端口号。也可以不指定地址填0.0.0.0那么就会使用本机地址ip

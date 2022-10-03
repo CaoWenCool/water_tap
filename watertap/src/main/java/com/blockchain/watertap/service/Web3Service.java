@@ -1,13 +1,16 @@
 package com.blockchain.watertap.service;
 
+import com.alibaba.fastjson.JSONObject;
 import com.blockchain.watertap.exception.XCloudCommonExceptions;
 import com.blockchain.watertap.mapper.opensea.mapper.TransferMapper;
 import com.blockchain.watertap.mapper.opensea.model.TransferPO;
 import com.blockchain.watertap.model.request.ListRequest;
+import com.blockchain.watertap.model.request.TransferRequest;
 import com.blockchain.watertap.model.response.TransferResponse;
 import com.blockchain.watertap.model.transfer.TransferStateEnum;
 import com.blockchain.watertap.util.AddressCheck;
 import com.blockchain.watertap.util.LocalDateTimeUtil;
+import com.google.common.net.HttpHeaders;
 import jep.Jep;
 import jep.JepException;
 import jep.SharedInterpreter;
@@ -15,8 +18,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.ResponseEntity;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
 import java.io.InputStream;
 import java.time.LocalDateTime;
@@ -48,6 +53,9 @@ public class Web3Service {
 
     @Autowired
     TransferMapper transferMapper;
+
+    @Autowired
+    private RestTemplate restTemplate;
 
     private static final String PENDING = "Pending";
 
@@ -98,7 +106,7 @@ public class Web3Service {
             transferResponse.setNumber(eachTransfer.getTransferVal());
             if (TransferStateEnum.READY.getState().equals(eachTransfer.getState())) {
                 transferResponse.setTime(PENDING);
-            } else if(TransferStateEnum.SUCCESS.getState().equals(eachTransfer.getState())){
+            } else if (TransferStateEnum.SUCCESS.getState().equals(eachTransfer.getState())) {
                 LocalDateTime transferTime = eachTransfer.getTransferTime();
                 LocalDateTime nowTime = LocalDateTime.now();
                 transferResponse.setTime(LocalDateTimeUtil.calTimeDiff(transferTime, nowTime));
@@ -106,7 +114,7 @@ public class Web3Service {
                 sb.append(eachTransfer.getNetwork());
                 sb.append(eachTransfer.getTxHash());
                 transferResponse.setUrl(sb.toString());
-            }else {
+            } else {
                 transferResponse.setTime(SEND_FAIL);
             }
             transferResponses.add(transferResponse);
@@ -116,7 +124,7 @@ public class Web3Service {
 
     public void transferReady(String toAddress, Integer transVale) {
         // 检验地址的合法性
-        if(!AddressCheck.isETHVaildAddress(toAddress)){
+        if (!AddressCheck.isETHVaildAddress(toAddress)) {
             throw new XCloudCommonExceptions.RequestInvalidException("This is not a valid address");
         }
         // 判断是否已经存在
@@ -159,8 +167,26 @@ public class Web3Service {
         Iterator<Map.Entry<String, TransferPO>> entries = toAddressMap.entrySet().iterator();
         while (entries.hasNext()) {
             Map.Entry<String, TransferPO> entry = entries.next();
-            web3Transfer(entry.getValue());
+//            web3Transfer(entry.getValue());
+            httpSendTemplate(entry.getValue());
         }
+    }
+
+    public void httpSendTemplate(TransferPO transferPO) {
+        TransferRequest transferRequest = new TransferRequest();
+        transferRequest.setNetwork(network);
+        transferRequest.setPrivate_key(privateKey);
+        transferRequest.setAbi(abi);
+        transferRequest.setToken_address(tokenAddress);
+        transferRequest.setTrans_value(transferPO.getTransferVal());
+        transferRequest.setTo_address(transferPO.getToAddress());
+        ResponseEntity<JSONObject> responseEntity = restTemplate.postForEntity("http://127.0.0.1:9090/base/init/image", JSONObject.toJSON(transferRequest), JSONObject.class);
+        JSONObject resJson = responseEntity.getBody();
+        logger.error(resJson.toJSONString());
+        transferPO.setState(TransferStateEnum.SUCCESS.getState());
+        transferPO.setTransferTime(LocalDateTime.now());
+        transferPO.setTxHash(resJson.getString("txn_hash"));
+        transferMapper.update(transferPO);
     }
 
 
