@@ -1,6 +1,4 @@
 
-from web3 import Web3, HTTPProvider
-from eth_account import Account
 
 def transfer(network, token_address, abi, private_key, to_address, trans_value):
     """
