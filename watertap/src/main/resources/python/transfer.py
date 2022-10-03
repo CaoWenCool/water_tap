@@ -1,3 +1,4 @@
+#!/usr/local/bin python3
 
 import os
 import sys
@@ -6,8 +7,8 @@ import json
 _TOP_DIR = os.path.abspath("/usr/local/python3/lib/python3.7/site-packages")
 sys.path.insert(0, _TOP_DIR)
 
-# from web3 import Web3, HTTPProvider
-# from eth_account import Account
+from web3 import Web3, HTTPProvider
+from eth_account import Account
 
 def transfer(network, token_address, abi, private_key, to_address, trans_value):
     """
