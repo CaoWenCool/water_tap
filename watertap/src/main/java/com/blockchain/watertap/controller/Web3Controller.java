@@ -60,7 +60,7 @@ public class Web3Controller {
             LocalDateTime localDateTime = BaseService.localDateTimeMap.get(ipAddr);
             if (null != localDateTime) {
                 LocalDateTime now = LocalDateTime.now();
-                if (now.isAfter(localDateTime)) {
+                if (now.isBefore(localDateTime)) {
                     initResponse.setClickDownload(true);
                 }
             }
