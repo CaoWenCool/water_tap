@@ -78,7 +78,7 @@ body {
     background-size: 100% 100%;
     background-repeat: no-repeat;
     background-image: url(../image/NUVAFAUCETWORD.png);
-    margin-top: -21%;
+    margin-top: -18%;
     margin-right: auto;
     margin-left: auto;
 }
@@ -89,7 +89,7 @@ body {
     background-size: 100% 100%;
     background-repeat: no-repeat;
     background-image: url(../image/role.png);
-    margin-top: -30%;
+    margin-top: -27%;
     margin-right: auto;
     margin-left: auto;
 }
@@ -351,7 +351,7 @@ body {
     margin-left: 353%;
 }
 
-@media screen and (max-width: 1920px){
-    .metaunva{margin-top: -18%;}
-    .send-token{margin-top: -27%;}
+@media screen and (max-width: 1700px){
+    .metaunva{margin-top: -21%;}
+    .send-token{margin-top: -30%;}
 }
