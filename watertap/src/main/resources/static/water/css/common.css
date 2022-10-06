@@ -78,7 +78,7 @@ body {
     background-size: 100% 100%;
     background-repeat: no-repeat;
     background-image: url(../image/NUVAFAUCETWORD.png);
-    margin-top: -19%;
+    margin-top: -18%;
     margin-right: auto;
     margin-left: auto;
 }
@@ -343,4 +343,9 @@ body {
 .btn button{
     margin-top: 100%;
     margin-left: 353%;
+}
+
+@media screen and (max-width: 1020px){
+    .metaunva{margin-top: -21%;}
+    .send-token{margin-top: -30%;}
 }
