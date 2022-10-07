@@ -27,12 +27,12 @@ body {
 }
 
 .logo {
-    width: 30%;
-    height: 35%;
+    width: 40%;
+    height: 50%;
     background-size: 100% 100%;
     background-repeat: no-repeat;
-    background-image: url(../image/nuvaLogo.png);
-    margin-top: 1%;
+    background-image: url(../image/NUVA_ALL_1.png);
+    margin-top: 0%;
     margin-right: auto;
     margin-left: auto;
 }
@@ -42,18 +42,18 @@ body {
     background-size: 100% 100%;
     background-position: center;
     position: absolute;
-    height: 12%;
-    width: 4%;
+    height: 11%;
+    width: 3%;
     text-align: center;
     margin-top: -1%;
 }
 
 .download-button {
     outline-style: none;
-    width: 20%;
-    height: 14%;
+    width: 15%;
+    height: 9%;
     text-align: right;
-    margin-right: -42%;
+    margin-right: -18%;
     margin-left: auto;
     padding-top: 10%;
 }
@@ -99,7 +99,7 @@ body {
     height: 18.8%;
     background-size: 100% 100%;
     background: rgba(255, 255, 255, 0.8);
-    margin-top: -4.5%;
+    margin-top: -3.5%;
     margin-right: auto;
     margin-left: auto;
     backdrop-filter: blur(6px);
@@ -351,7 +351,7 @@ body {
     margin-left: 353%;
 }
 
-@media screen and (max-width: 1700px){
-    .metaunva{margin-top: -21%;}
-    .send-token{margin-top: -30%;}
-}
+/*@media screen and (max-width: 1700px){*/
+/*    .metaunva{margin-top: -21%;}*/
+/*    .send-token{margin-top: -30%;}*/
+/*}*/
