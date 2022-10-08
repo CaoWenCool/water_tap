@@ -68,8 +68,7 @@ body {
     font-family: "Inter";
     font-style: normal;
     font-weight: 400;
-    font-size: 16px;
-    line-height: 19px;
+    font-size: 1vw;
 }
 
 .metaunva {
@@ -175,8 +174,7 @@ body {
     font-family: "Raleway";
     font-style: normal;
     font-weight: 400;
-    font-size: 16px;
-    line-height: 19px;
+    font-size: 1vw;
     text-align: center;
     color: #FFFFFF;
 }
@@ -187,8 +185,7 @@ body {
     font-family: "Raleway";
     font-style: normal;
     font-weight: 400;
-    font-size: 16px;
-    line-height: 19px;
+    font-size: 1vw;
     text-align: center;
     color: #FFFFFF;
 }
@@ -199,8 +196,7 @@ body {
     font-family: "Raleway";
     font-style: normal;
     font-weight: 400;
-    font-size: 16px;
-    line-height: 19px;
+    font-size: 1vw;
     text-align: center;
     color: #FFFFFF;
 }
@@ -211,8 +207,7 @@ body {
     font-family: "Raleway";
     font-style: normal;
     font-weight: 400;
-    font-size: 16px;
-    line-height: 19px;
+    font-size: 1vw;
     text-align: center;
     color: #FFFFFF;
 }
@@ -222,8 +217,7 @@ body {
     font-family: "Raleway";
     font-style: normal;
     font-weight: 400;
-    font-size: 16px;
-    line-height: 19px;
+    font-size: 1vw;
     color: #000000;
 }
 
@@ -232,8 +226,7 @@ body {
     font-family: "Raleway";
     font-style: normal;
     font-weight: 400;
-    font-size: 16px;
-    line-height: 19px;
+    font-size: 1vw;
     color: #000000;
 }
 
@@ -242,8 +235,7 @@ body {
     font-family: "Raleway";
     font-style: normal;
     font-weight: 400;
-    font-size: 16px;
-    line-height: 19px;
+    font-size: 1vw;
     color: #000000;
 }
 
@@ -252,8 +244,7 @@ body {
     font-family: "Raleway";
     font-style: normal;
     font-weight: 400;
-    font-size: 16px;
-    line-height: 19px;
+    font-size: 1vw;
     color: #000000;
 }
 
@@ -290,7 +281,6 @@ body {
     font-style: normal;
     font-weight: 400;
     font-size: 90%;
-    line-height: 19px;
 }
 
 .send-address-button-input{
@@ -304,9 +294,7 @@ body {
     font-family: "Inter";
     font-style: normal;
     font-weight: 400;
-    font-size: 16px;
-    line-height: 19px;
-    /*opacity: 0.5;*/
+    font-size: 1vw;
     pointer-events: none;
 }
 
