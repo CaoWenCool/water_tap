@@ -23,7 +23,7 @@ import java.util.List;
 @RestController
 public class Web3Controller {
 
-    private static final Integer SEND_VALUE = 19;
+    private static final Integer SEND_VALUE = 69;
 
     @Autowired
     Web3Service web3Service;
