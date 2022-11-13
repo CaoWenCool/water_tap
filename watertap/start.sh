@@ -1,5 +1,5 @@
-cd /home/java/water_tap/watertap
+cd /home/work/watertap
 git pull
 mvn clean package  -Dmaven.test.skip=true
-cd /home/java/water_tap/watertap/deploy
+cd /home/work/watertap/deploy
 sh start.sh
