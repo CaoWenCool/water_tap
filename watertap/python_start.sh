@@ -1,1 +1,1 @@
-python3 /home/java/water_tap/watertap/src/main/resources/python/transfer.py
+python3 /home/work/watertap/src/main/resources/python/transfer.py
