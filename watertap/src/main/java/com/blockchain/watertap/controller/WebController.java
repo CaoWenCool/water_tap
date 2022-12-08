@@ -16,7 +16,7 @@ import java.time.LocalDateTime;
 
 @Controller
 @Api(tags = "访问界面")
-@RequestMapping("/water/tab")
+@RequestMapping("/airdrop")
 public class WebController {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
     @RequestMapping("/index")
